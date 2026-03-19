@@ -1,0 +1,2264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kenneth Kuang — Mechanical Engineering & Data Science</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300;1,9..40,400&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:           #f0efeb;
+      --surface:      #ffffff;
+      --surface-2:    #f7f6f2;
+      --surface-3:    #ececec;
+      --border:       rgba(0,0,0,0.08);
+      --border-md:    rgba(0,0,0,0.14);
+      --border-hover: rgba(220,30,30,0.4);
+      --text:         #0d0d0d;
+      --muted:        #c8c8c4;
+      --muted2:       #999994;
+      --muted3:       #666662;
+      --accent:       #e01e1e;
+      --accent-dim:   rgba(220,30,30,0.07);
+
+      --sans:    'DM Sans', system-ui, sans-serif;
+      --display: 'Outfit', system-ui, sans-serif;
+      --mono:    'DM Mono', monospace;
+
+      --radius-sm: 4px;
+      --radius:    8px;
+      --radius-lg: 12px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--sans);
+      font-size: 16px;
+      line-height: 1.6;
+      overflow-x: hidden;
+      transition: background-color 1s ease;
+    }
+
+    /* ── DOT GRID (fixed — content scrolls over it) ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      background-image: url("data:image/svg+xml,%3Csvg width='140' height='140' viewBox='0 0 140 140' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='68.5' y='68.5' width='3' height='3' fill='rgba(0,0,0,0.22)'/%3E%3C/svg%3E");
+      background-size: 140px 140px;
+      background-attachment: fixed;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    * { position: relative; z-index: 1; }
+
+    /* ── CURSOR GLOW ── */
+    #cursor-glow {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      background: radial-gradient(600px circle at var(--cx,50%) var(--cy,50%), rgba(220,30,30,0.04) 0%, transparent 65%);
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 1.1rem;
+      left: 50%;
+      transform: translateX(-50%) translateY(0);
+      z-index: 200;
+      display: flex;
+      align-items: center;
+      gap: 0;
+      padding: 0 0.4rem;
+      height: 44px;
+      background: rgba(248,247,243,0.82);
+      backdrop-filter: blur(20px) saturate(1.4);
+      -webkit-backdrop-filter: blur(20px) saturate(1.4);
+      border: 1px solid rgba(0,0,0,0.1);
+      border-radius: 10px;
+      box-shadow: 0 2px 20px rgba(0,0,0,0.07);
+      white-space: nowrap;
+      transition: transform 0.42s cubic-bezier(0.4,0,0.2,1),
+                  opacity 0.3s ease;
+    }
+    nav.nav-hidden {
+      transform: translateX(-50%) translateY(calc(-100% - 1.5rem));
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    /* invisible hover zone at top of screen */
+    #nav-hover-zone {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: 56px;
+      z-index: 199;
+      pointer-events: all;
+    }
+
+    .nav-logo {
+      font-family: var(--mono);
+      font-size: 0.58rem;
+      font-weight: 500;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: var(--text);
+      opacity: 0.7;
+      padding: 0 1rem 0 0.75rem;
+    }
+
+    /* slim divider between logo and links */
+    .nav-divider {
+      width: 1px;
+      height: 16px;
+      background: rgba(0,0,0,0.12);
+      margin: 0 0.1rem;
+      flex-shrink: 0;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      list-style: none;
+    }
+
+    .nav-links a {
+      display: block;
+      padding: 0.35rem 0.9rem;
+      font-family: var(--mono);
+      font-size: 0.58rem;
+      font-weight: 400;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted2);
+      transition: color 0.15s;
+    }
+    .nav-links a:hover { color: var(--text); }
+
+    .nav-cta {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.28rem 0.85rem;
+      margin: 0 0.3rem 0 0.4rem;
+      border: 1px solid rgba(0,0,0,0.15);
+      background: transparent;
+      color: var(--text) !important;
+      font-family: var(--mono);
+      font-size: 0.58rem;
+      font-weight: 400;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      border-radius: 6px;
+      transition: background 0.15s, color 0.15s, border-color 0.15s;
+    }
+    .nav-cta:hover {
+      background: var(--text);
+      color: var(--bg) !important;
+      border-color: var(--text);
+    }
+
+    /* ── SCROLL REVEAL ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity 0.55s ease, transform 0.55s ease;
+    }
+    .reveal.visible { opacity: 1; transform: none; }
+
+    /* ── SECTION WRAPPER ── */
+    .section-wrap {
+      max-width: 1060px;
+      margin: 0 auto;
+      padding: 7rem 2rem;
+    }
+
+    .section-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted3);
+      margin-bottom: 1.25rem;
+    }
+    .section-eyebrow::before {
+      content: '';
+      display: block;
+      width: 20px;
+      height: 1px;
+      background: var(--accent);
+    }
+
+    .section-title {
+      font-family: var(--display);
+      font-size: clamp(2.8rem, 6vw, 5rem);
+      font-weight: 900;
+      line-height: 1.0;
+      letter-spacing: 0.01em;
+      text-transform: uppercase;
+      margin-bottom: 3rem;
+      color: var(--text);
+    }
+
+    /* ── CARD ── */
+    .card {
+      background: rgba(255,255,255,0.38);
+      border: 1px solid rgba(255,255,255,0.55);
+      border-radius: var(--radius);
+      padding: 1.75rem;
+      transition: border-color 0.2s, background 0.2s;
+      overflow: hidden;
+    }
+    .card:hover {
+      border-color: rgba(220,30,30,0.25);
+      background: rgba(255,255,255,0.52);
+    }
+
+    .card-label {
+      font-family: var(--mono);
+      font-size: 0.62rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted3);
+      margin-bottom: 1rem;
+    }
+
+    /* ── BENTO ── */
+    .bento { display: grid; gap: 1px; border: 1px solid rgba(255,255,255,0.5); border-radius: var(--radius-lg); overflow: hidden; background: rgba(255,255,255,0.15); }
+    .bento .card {
+      border: none;
+      border-radius: 0;
+      background: rgba(255,255,255,0.38);
+    }
+    .bento .card:hover { background: rgba(255,255,255,0.52); }
+
+    /* ── BUTTONS ── */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.7rem 1.5rem;
+      font-family: var(--sans);
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      border-radius: var(--radius-sm);
+      transition: all 0.18s;
+      cursor: pointer;
+    }
+    .btn-primary {
+      background: var(--accent);
+      color: #fff;
+    }
+    .btn-primary:hover { opacity: 0.85; transform: translateY(-1px); }
+    .btn-ghost {
+      background: transparent;
+      border: 1px solid var(--border-md);
+      color: var(--muted3);
+    }
+    .btn-ghost:hover { border-color: var(--border-hover); color: var(--text); transform: translateY(-1px); }
+
+    /* ─────────────────────────────────────── */
+    /*  HERO                                   */
+    /* ─────────────────────────────────────── */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 9rem 6vw 5rem;
+    }
+
+    .hero-layout {
+      display: grid;
+      grid-template-columns: 1fr 320px;
+      gap: 4rem;
+      align-items: center;
+      width: 100%;
+      max-width: 1300px;
+      margin: 0 auto;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.28rem 0.8rem 0.28rem 0.6rem;
+      background: transparent;
+      border: 1px solid var(--border-md);
+      border-radius: var(--radius-sm);
+      font-family: var(--mono);
+      font-size: 0.62rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted3);
+      margin-bottom: 2rem;
+    }
+
+    .badge-dot {
+      width: 5px; height: 5px;
+      background: #4ade80;
+      border-radius: 50%;
+      box-shadow: 0 0 6px rgba(74,222,128,0.7);
+      animation: blink 2.4s ease-in-out infinite;
+      flex-shrink: 0;
+    }
+    @keyframes blink {
+      0%,100% { opacity: 1; }
+      50%      { opacity: 0.25; }
+    }
+
+    .hero-name {
+      font-family: var(--display);
+      font-size: clamp(5rem, 12vw, 11rem);
+      font-weight: 900;
+      line-height: 0.9;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      margin-bottom: 1.75rem;
+      color: var(--text);
+    }
+    .hero-name .line-two {
+      display: block;
+      color: transparent;
+      -webkit-text-stroke: 1.5px rgba(0,0,0,0.18);
+    }
+
+    .hero-sub {
+      font-size: 0.95rem;
+      font-weight: 400;
+      color: var(--muted3);
+      max-width: 400px;
+      line-height: 1.8;
+      margin-bottom: 2.5rem;
+    }
+
+    .hero-actions { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+
+    /* ── PHOTO BLOCK ── */
+    .hero-photo-wrap {
+      position: relative;
+    }
+
+    /* The frame — tall, sharp corners, Nothing-card style */
+    .photo-frame {
+      width: 100%;
+      aspect-ratio: 3/4;
+      border: 1px solid rgba(255,255,255,0.55);
+      border-radius: var(--radius-lg);
+      background: rgba(255,255,255,0.38);
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* corner tick marks (Nothing-brand corners) */
+    .photo-frame::before,
+    .photo-frame::after {
+      content: '';
+      position: absolute;
+      z-index: 2;
+      width: 16px; height: 16px;
+    }
+    .photo-frame::before {
+      top: 10px; right: 10px;
+      border-top: 1px solid var(--accent);
+      border-right: 1px solid var(--accent);
+    }
+    .photo-frame::after {
+      bottom: 10px; left: 10px;
+      border-bottom: 1px solid var(--accent);
+      border-left: 1px solid var(--accent);
+    }
+
+    .photo-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+    }
+
+    /* placeholder */
+    .photo-placeholder {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+    }
+    .photo-placeholder svg {
+      width: 32px; height: 32px;
+      stroke: var(--muted2);
+      fill: none;
+      stroke-width: 1;
+    }
+    .photo-placeholder span {
+      font-family: var(--mono);
+      font-size: 0.6rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--muted2);
+    }
+
+    /* floating info strip below photo */
+    .photo-meta {
+      margin-top: 0.85rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 0.1rem;
+    }
+    .photo-meta-name {
+      font-family: var(--mono);
+      font-size: 0.62rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted3);
+    }
+    .photo-meta-tag {
+      font-family: var(--mono);
+      font-size: 0.6rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted2);
+    }
+
+    /* dot-matrix glyph (Nothing-style) */
+    .glyph-strip {
+      position: absolute;
+      top: -52px;
+      left: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .glyph-strip .gs-row {
+      display: flex;
+      gap: 4px;
+    }
+    .glyph-strip span {
+      display: block;
+      width: 4px; height: 4px;
+      border-radius: 1px;
+      background: rgba(0,0,0,0.1);
+    }
+    .glyph-strip span.on { background: var(--accent); }
+    /* About section dot matrix */
+    .dot-matrix-deco {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      margin-bottom: 2rem;
+    }
+    .dot-matrix-deco .dm-row {
+      display: flex;
+      gap: 4px;
+    }
+    .dot-matrix-deco span {
+      display: block;
+      width: 4px; height: 4px;
+      border-radius: 1px;
+      background: rgba(0,0,0,0.1);
+    }
+    .dot-matrix-deco span.on { background: var(--accent); }
+    .glyph-strip-inline {
+      display: flex;
+      gap: 4px;
+      margin-bottom: 1.25rem;
+    }
+    .glyph-strip-inline span {
+      display: block;
+      width: 3px; height: 3px;
+      border-radius: 50%;
+      background: var(--muted);
+    }
+    .glyph-strip-inline span.on { background: var(--accent); }
+
+    /* Marathon-style technical separator */
+    .tech-geo-sep {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 2rem;
+    }
+    .tech-geo-sep .tg-bracket {
+      width: 12px; height: 12px;
+      border-top: 1.5px solid var(--accent);
+      border-left: 1.5px solid var(--accent);
+      flex-shrink: 0;
+    }
+    .tech-geo-sep .tg-bracket.right {
+      border-left: none;
+      border-right: 1.5px solid var(--accent);
+    }
+    .tech-geo-sep .tg-line {
+      flex: 1;
+      height: 1px;
+      background: var(--border-md);
+    }
+    .tech-geo-sep .tg-diamond {
+      width: 6px; height: 6px;
+      background: var(--accent);
+      transform: rotate(45deg);
+      flex-shrink: 0;
+    }
+    .tech-geo-sep .tg-label {
+      font: 600 9px/1 var(--mono);
+      color: var(--muted2);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      flex-shrink: 0;
+    }
+
+    /* ── STATS ROW ── */
+    .hero-stats {
+      display: flex;
+      gap: 2.5rem;
+      margin-top: 2rem;
+    }
+    .stat-item {}
+    .stat-n {
+      font-family: var(--display);
+      font-size: 1.9rem;
+      font-weight: 800;
+      line-height: 1;
+      letter-spacing: -0.03em;
+      color: var(--text);
+    }
+    .stat-label {
+      font-family: var(--mono);
+      font-size: 0.6rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted2);
+      margin-top: 0.3rem;
+    }
+
+    /* ─────────────────────────────────────── */
+    /*  ABOUT                                  */
+    /* ─────────────────────────────────────── */
+    .about-bento { grid-template-columns: 1.5fr 1fr; }
+
+    .card-bio { grid-row: 1 / 3; }
+    .card-bio p {
+      color: var(--muted3);
+      font-size: 0.95rem;
+      line-height: 1.85;
+      margin-bottom: 1rem;
+    }
+    .card-bio p:last-child { margin-bottom: 0; }
+
+    .card-stat {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 110px;
+    }
+    .stat-num {
+      font-family: var(--display);
+      font-size: 3.5rem;
+      font-weight: 900;
+      line-height: 1;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+    .stat-desc {
+      font-family: var(--mono);
+      font-size: 0.6rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted2);
+    }
+
+    .card-focus { display: flex; flex-direction: column; gap: 0.75rem; }
+    .focus-list {
+      list-style: none; padding: 0; margin: 0;
+      display: flex; flex-direction: column; gap: 0.5rem;
+    }
+    .focus-list li {
+      display: flex; align-items: center; gap: 0.6rem;
+      font-family: var(--mono); font-size: 0.72rem;
+      letter-spacing: 0.04em; color: var(--text);
+    }
+    .focus-dot {
+      display: block; width: 5px; height: 5px;
+      border-radius: 1px; background: var(--accent); flex-shrink: 0;
+    }
+    .focus-status {
+      display: flex; align-items: center; gap: 0.5rem;
+      margin-top: auto; padding-top: 0.75rem;
+      border-top: 1px solid var(--border);
+      font-family: var(--mono); font-size: 0.6rem;
+      letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted2);
+    }
+    .focus-status-dot {
+      display: block; width: 6px; height: 6px; border-radius: 50%;
+      background: #22c55e;
+      box-shadow: 0 0 0 3px rgba(34,197,94,0.2);
+      flex-shrink: 0;
+    }
+    .tools-list { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.75rem; }
+    .tool-chip {
+      padding: 0.22rem 0.65rem;
+      background: transparent;
+      border: 1px solid var(--border-md);
+      border-radius: 2px;
+      font-family: var(--mono);
+      font-size: 0.62rem;
+      letter-spacing: 0.06em;
+      color: var(--muted3);
+      transition: border-color 0.15s, color 0.15s;
+    }
+    .tool-chip:hover { border-color: var(--border-hover); color: var(--text); }
+
+    /* ─────────────────────────────────────── */
+    /*  PROJECTS — EDITORIAL LIST             */
+    /* ─────────────────────────────────────── */
+    .proj-list { margin-top: 2.5rem; }
+
+    .proj-item {
+      display: grid;
+      grid-template-columns: 3.5rem 1fr 240px;
+      gap: 0 2.5rem;
+      align-items: center;
+      padding: 3rem 0;
+      border-top: 1px solid var(--border-md);
+      cursor: pointer;
+      transition: padding-left 0.32s cubic-bezier(0.4,0,0.2,1);
+    }
+    .proj-item:last-child { border-bottom: 1px solid var(--border-md); }
+    .proj-item:hover { padding-left: 0.7rem; }
+    .proj-item:hover .proj-thumb { opacity: 1; transform: scale(1.02); }
+
+    .proj-num {
+      font-family: var(--mono);
+      font-size: 0.58rem;
+      letter-spacing: 0.16em;
+      color: var(--muted2);
+      align-self: start;
+      padding-top: 0.25rem;
+    }
+
+    .proj-title {
+      font-family: var(--display);
+      font-size: 2rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      line-height: 1.05;
+      text-transform: uppercase;
+      color: var(--text);
+      margin-bottom: 0.5rem;
+    }
+
+    .proj-tags-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .proj-tag {
+      display: inline-block;
+      padding: 0.18rem 0.5rem;
+      border: 1px solid var(--border-md);
+      border-radius: 2px;
+      font-family: var(--mono);
+      font-size: 0.54rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted3);
+    }
+
+    .proj-desc {
+      font-size: 0.875rem;
+      color: var(--muted3);
+      line-height: 1.8;
+    }
+
+    /* Thumbnail */
+    .proj-thumb {
+      aspect-ratio: 4/3;
+      border-radius: var(--radius);
+      border: 1px solid var(--border-md);
+      overflow: hidden;
+      background: rgba(255,255,255,0.28);
+      opacity: 0.72;
+      transition: opacity 0.3s ease, transform 0.3s ease;
+      position: relative;
+    }
+    .proj-thumb img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .proj-thumb-ph {
+      width: 100%; height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+      font-family: var(--mono);
+      font-size: 0.54rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted2);
+    }
+    .proj-thumb-ph svg {
+      width: 20px; height: 20px;
+      stroke: var(--muted);
+      fill: none;
+      stroke-width: 1;
+    }
+
+    /* ─────────────────────────────────────── */
+    /*  PROJECT MODAL                          */
+    /* ─────────────────────────────────────── */
+    .proj-modal-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 500;
+      background: rgba(10,10,10,0.45);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.35s ease;
+    }
+    .proj-modal-overlay.open {
+      opacity: 1;
+      pointer-events: all;
+    }
+    .proj-modal {
+      background: var(--surface);
+      position: absolute;
+      top: 0; right: 0;
+      width: min(1140px, 100%);
+      height: 100vh;
+      max-height: 100vh;
+      overflow-y: auto;
+      border-radius: 12px 0 0 12px;
+      border-left: 1px solid var(--border-md);
+      transform: translateX(100%);
+      transition: transform 0.42s cubic-bezier(0.4,0,0.2,1);
+      scrollbar-width: thin;
+      scrollbar-color: var(--border-md) transparent;
+    }
+    .proj-modal::-webkit-scrollbar { width: 4px; }
+    .proj-modal::-webkit-scrollbar-thumb { background: var(--border-md); border-radius: 2px; }
+    .proj-modal-overlay.open .proj-modal {
+      transform: translateX(0);
+    }
+
+    /* ── top nav bar inside panel ── */
+    .proj-modal-topbar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 1.5rem;
+      height: 52px;
+      background: rgba(255,255,255,0.88);
+      backdrop-filter: blur(16px) saturate(1.3);
+      -webkit-backdrop-filter: blur(16px) saturate(1.3);
+      border-bottom: 1px solid var(--border);
+    }
+    .proj-modal-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-family: var(--mono);
+      font-size: 0.58rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted3);
+      padding: 0.3rem 0;
+      transition: color 0.15s;
+    }
+    .proj-modal-back:hover { color: var(--text); }
+    .proj-modal-back svg {
+      width: 13px; height: 13px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    .proj-modal-topbar-title {
+      font-family: var(--mono);
+      font-size: 0.58rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted2);
+    }
+
+    /* kept for legacy, not used now */
+    .proj-modal-close {
+      display: none;
+      width: 30px; height: 30px;
+      border-radius: 50%;
+      border: 1px solid var(--border-md);
+      background: rgba(255,255,255,0.9);
+      cursor: pointer;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.15s;
+    }
+    .proj-modal-close svg {
+      width: 11px; height: 11px;
+      stroke: var(--text);
+      fill: none;
+      stroke-width: 2.5;
+      stroke-linecap: round;
+    }
+    /* ── PROJECT DETAIL PANELS (hidden source content) ── */
+    .proj-detail { display: none; }
+
+    /* ── PROJECT DETAIL LAYOUT inside modal ── */
+    .pd-hero-img {
+      width: 100%;
+      aspect-ratio: 16/9;
+      background: rgba(0,0,0,0.05);
+      border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+      overflow: hidden;
+      position: relative;
+    }
+    .pd-hero-img img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .pd-img-ph {
+      width: 100%; height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      font-family: var(--mono);
+      font-size: 0.58rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted2);
+      position: absolute;
+      inset: 0;
+    }
+    .pd-img-ph svg {
+      width: 28px; height: 28px;
+      stroke: var(--muted);
+      fill: none;
+      stroke-width: 1;
+    }
+
+    .pd-header {
+      padding: 2.5rem 3.5rem 2rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .pd-num {
+      font-family: var(--mono);
+      font-size: 0.55rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--muted2);
+      margin-bottom: 0.5rem;
+    }
+    .pd-title {
+      font-family: var(--display);
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+      line-height: 1.0;
+      color: var(--text);
+      margin-bottom: 0.85rem;
+    }
+    .pd-summary {
+      font-size: 1rem;
+      color: var(--muted3);
+      line-height: 1.75;
+      margin-bottom: 1.1rem;
+      max-width: 680px;
+    }
+    .pd-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+    }
+
+    .pd-section {
+      padding: 1.6rem 3.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .pd-section:last-child { border-bottom: none; }
+
+    .pd-section-label {
+      font-family: var(--mono);
+      font-size: 0.55rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .pd-section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    .pd-section p {
+      font-size: 0.9rem;
+      color: var(--muted3);
+      line-height: 1.85;
+      margin-bottom: 0.7rem;
+    }
+    .pd-section p:last-child { margin-bottom: 0; }
+
+    .pd-bullets {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    .pd-bullets li {
+      font-size: 0.9rem;
+      color: var(--muted3);
+      line-height: 1.65;
+      padding-left: 1.2rem;
+      position: relative;
+    }
+    .pd-bullets li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--muted);
+      font-size: 0.8rem;
+    }
+
+    .pd-media-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.75rem;
+    }
+    .pd-media-slot {
+      aspect-ratio: 4/3;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-md);
+      background: rgba(0,0,0,0.04);
+      overflow: hidden;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .pd-media-slot.wide { grid-column: 1 / -1; aspect-ratio: 16/9; }
+    .pd-media-slot img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+      position: absolute;
+      inset: 0;
+    }
+    .pd-media-slot span {
+      font-family: var(--mono);
+      font-size: 0.5rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted2);
+      text-align: center;
+      padding: 0.5rem;
+    }
+
+    /* ── INTERESTS / FUN FACTS ── */
+    .interests-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+    .interest-tile {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+    .interest-img {
+      aspect-ratio: 1/1;
+      border-radius: var(--radius);
+      border: 1px solid var(--border-md);
+      background: rgba(255,255,255,0.28);
+      overflow: hidden;
+      position: relative;
+      transition: border-color 0.2s;
+    }
+    .interest-tile:hover .interest-img { border-color: rgba(220,30,30,0.25); }
+    .interest-img img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .interest-img-ph {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--mono);
+      font-size: 0.5rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted2);
+    }
+    .interest-label {
+      font-family: var(--mono);
+      font-size: 0.58rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted3);
+      text-align: center;
+    }
+
+    /* ── INSTAGRAM CARD ── */
+    .ig-card {
+      margin-top: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      border: 1px solid var(--border-md);
+      border-radius: var(--radius-lg);
+      background: rgba(255,255,255,0.35);
+      backdrop-filter: blur(4px);
+      text-decoration: none;
+      overflow: hidden;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .ig-card:hover { border-color: rgba(220,30,30,0.3); background: rgba(255,255,255,0.5); }
+    .ig-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 0.9rem 1.25rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .ig-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #f9ce34, #ee2a7b, #6228d7);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      overflow: hidden;
+    }
+    .ig-avatar svg {
+      width: 20px; height: 20px;
+      stroke: #fff; fill: none;
+      stroke-width: 1.8;
+      stroke-linecap: round; stroke-linejoin: round;
+    }
+    .ig-info { flex: 1; }
+    .ig-handle {
+      font-family: var(--display);
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1.2;
+    }
+    .ig-sub {
+      font-family: var(--mono);
+      font-size: 0.5rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted2);
+      margin-top: 0.15rem;
+    }
+    .ig-follow {
+      font-family: var(--mono);
+      font-size: 0.52rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      border: 1px solid var(--accent);
+      padding: 0.3rem 0.75rem;
+      border-radius: 2px;
+      white-space: nowrap;
+      transition: background 0.18s, color 0.18s;
+    }
+    .ig-card:hover .ig-follow { background: var(--accent); color: #fff; }
+    .ig-photos {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+    }
+    .ig-photo {
+      aspect-ratio: 1/1;
+      position: relative;
+      overflow: hidden;
+      background: var(--surface-2);
+    }
+    .ig-photo img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.3s ease;
+    }
+    .ig-card:hover .ig-photo img { transform: scale(1.04); }
+    .ig-photo-ph {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--mono);
+      font-size: 0.46rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted2);
+    }
+
+    /* legacy — hidden */
+    .project-img {
+      display: none;
+      aspect-ratio: 16/9;
+      background: var(--surface-3);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      display: grid;
+      place-items: center;
+      font-family: var(--mono);
+      font-size: 0.6rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted2);
+      overflow: hidden;
+    }
+    .project-img img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* ─────────────────────────────────────── */
+    /*  CONTACT                                */
+    /* ─────────────────────────────────────── */
+    .contact-bento { grid-template-columns: 1.3fr 1fr; }
+
+    .contact-big {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 220px;
+    }
+    .contact-big p {
+      font-size: 0.93rem;
+      color: var(--muted3);
+      line-height: 1.85;
+      margin-bottom: 1.1rem;
+    }
+
+    .contact-links { display: flex; flex-direction: column; gap: 0; }
+
+    .contact-link {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+      padding: 0.85rem 1rem;
+      background: transparent;
+      font-size: 0.875rem;
+      color: var(--muted3);
+      transition: background 0.18s, color 0.18s;
+      border: none;
+      border-bottom: 1px solid var(--border);
+    }
+    .contact-link:last-child { border-bottom: none; }
+    .contact-link:hover {
+      background: rgba(255,255,255,0.25);
+      color: var(--text);
+    }
+    .contact-link svg {
+      width: 14px; height: 14px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 1.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      flex-shrink: 0;
+    }
+    .cl-right {
+      margin-left: auto;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .contact-link-label {
+      font-family: var(--mono);
+      font-size: 0.58rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted2);
+      transition: color 0.15s;
+    }
+    .contact-link.copied .contact-link-label {
+      color: var(--accent);
+    }
+
+    /* clipboard icon */
+    .cl-copy {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 22px; height: 22px;
+      opacity: 0;
+      transition: opacity 0.15s;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+    .cl-copy svg {
+      width: 12px; height: 12px;
+      stroke: var(--muted2);
+      fill: none;
+      stroke-width: 1.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    .contact-link:hover .cl-copy { opacity: 1; }
+    .contact-link.copied .cl-copy svg { stroke: var(--accent); }
+
+
+    /* ── FOOTER ── */
+    footer {
+      max-width: 1060px;
+      margin: 0 auto;
+      padding: 1.5rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: var(--mono);
+      font-size: 0.62rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted2);
+    }
+
+    .footer-status {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .footer-dot {
+      width: 4px; height: 4px;
+      background: #4ade80;
+      border-radius: 50%;
+      box-shadow: 0 0 5px rgba(74,222,128,0.6);
+      display: inline-block;
+      animation: blink 2.4s ease-in-out infinite;
+    }
+
+    /* ─────────────────────────────────────── */
+    /*  EXPERIENCE — TIMELINE                  */
+    /* ─────────────────────────────────────── */
+    /* ── SIDE-BY-SIDE TIMELINES ── */
+    .tl-columns {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0 4rem;
+      margin-top: 2.5rem;
+      align-items: start;
+    }
+    .tl-col-label {
+      font-family: var(--mono);
+      font-size: 0.55rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+    .tl-col-label::before {
+      content: '';
+      display: block;
+      width: 16px;
+      height: 1.5px;
+      background: var(--accent);
+      flex-shrink: 0;
+    }
+
+    .timeline {
+      position: relative;
+      padding-left: 1.25rem;
+    }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 6px;
+      bottom: 0;
+      width: 2px;
+      background: var(--border-md);
+    }
+
+    .tl-item {
+      position: relative;
+      padding: 0 0 2.5rem 1.75rem;
+    }
+    .tl-item:last-child { padding-bottom: 0; }
+
+    /* Diamond — work */
+    .tl-item::before {
+      content: '';
+      position: absolute;
+      left: -6px;
+      top: 5px;
+      width: 12px;
+      height: 12px;
+      background: var(--accent);
+      transform: rotate(45deg);
+      box-shadow: 0 0 0 3px var(--bg);
+      z-index: 1;
+    }
+    /* Hollow circle — leadership */
+    .tl-item.leadership::before {
+      background: var(--bg);
+      border: 2px solid var(--accent);
+      border-radius: 50%;
+      transform: none;
+      box-shadow: 0 0 0 3px var(--bg), 0 0 0 5px rgba(220,30,30,0.15);
+    }
+
+    .tl-period {
+      font-family: var(--mono);
+      font-size: 0.6rem;
+      letter-spacing: 0.08em;
+      color: var(--muted3);
+      margin-bottom: 0.3rem;
+    }
+    .tl-company {
+      font-family: var(--display);
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 0.15rem;
+    }
+    .tl-role {
+      font-family: var(--mono);
+      font-size: 0.62rem;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.85rem;
+    }
+    .tl-location {
+      color: var(--muted3);
+      font-size: 0.6rem;
+      letter-spacing: 0.04em;
+    }
+    .tl-bullets {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+    }
+    .tl-bullets li {
+      font-size: 0.9rem;
+      color: var(--muted3);
+      line-height: 1.6;
+      padding-left: 1rem;
+      position: relative;
+    }
+    .tl-bullets li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--muted2);
+      top: 0.1rem;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 800px) {
+      nav { padding: 0 0.3rem; top: 0.6rem; }
+      .nav-logo { display: none; }
+      .nav-divider { display: none; }
+      .nav-links a { padding: 0.35rem 0.5rem; letter-spacing: 0.08em; font-size: 0.52rem; }
+
+      #hero { padding: 7rem 5vw 3rem; }
+      .hero-layout {
+        grid-template-columns: 1fr;
+        gap: 0;
+      }
+      .hero-photo-wrap {
+        order: -1;
+        margin-bottom: 2.5rem;
+        max-width: 240px;
+      }
+
+      .section-wrap { padding: 5rem 1.25rem; }
+
+      .about-bento,
+      .contact-bento { grid-template-columns: 1fr; }
+      .card-bio { grid-row: auto; }
+
+      .tl-columns { grid-template-columns: 1fr; gap: 3rem 0; }
+
+      .proj-item { grid-template-columns: 2.2rem 1fr; }
+      .proj-thumb { display: none; }
+      .proj-modal { border-radius: 0; border-left: none; }
+      .pd-header { padding: 1.5rem 1.25rem 1.25rem; }
+      .pd-section { padding: 1.25rem 1.25rem; }
+      .pd-hero-img { aspect-ratio: 3/2; }
+      .pd-media-grid { grid-template-columns: 1fr; }
+      .pd-media-slot.wide { aspect-ratio: 4/3; }
+      .interests-grid { grid-template-columns: repeat(2, 1fr); }
+
+      footer { flex-direction: column; gap: 0.4rem; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<div id="cursor-glow"></div>
+
+<!-- invisible top hover zone -->
+<div id="nav-hover-zone"></div>
+
+<!-- ── NAV ── -->
+<nav id="site-nav">
+  <a href="#hero" class="nav-logo" style="text-decoration:none;cursor:pointer;">Kenneth Kuang</a>
+  <div class="nav-divider"></div>
+  <ul class="nav-links">
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact" class="nav-cta">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- ── HERO ── -->
+<div id="hero" data-bg="#f0efeb">
+  <div class="hero-layout">
+
+    <!-- Left: text -->
+    <div class="hero-text">
+      <div class="dot-matrix-deco" style="margin-bottom:1.5rem" aria-hidden="true">
+        <div class="dm-row"><span class="on"></span><span></span><span class="on"></span><span></span><span class="on"></span><span></span><span class="on"></span><span></span><span class="on"></span><span></span><span class="on"></span><span></span><span class="on"></span><span></span><span class="on"></span><span></span><span class="on"></span><span></span><span class="on"></span></div>
+        <div class="dm-row"><span></span><span class="on"></span><span></span><span class="on"></span><span></span><span class="on"></span><span></span><span class="on"></span><span></span><span class="on"></span><span></span><span class="on"></span><span></span><span class="on"></span><span></span><span class="on"></span><span></span><span class="on"></span><span></span></div>
+      </div>
+      <h1 class="hero-name">
+        Kenneth<span class="line-two">Kuang</span>
+      </h1>
+
+      <p class="hero-sub">
+        Mechanical Engineer &amp; Data Scientist — building systems where
+        physics, simulation, and data converge.
+      </p>
+
+      <div class="hero-actions">
+        <a href="#projects" class="btn btn-primary">
+          View Work
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a href="#contact" class="btn btn-ghost">Get in Touch</a>
+        <a href="resume.pdf" download="Kenneth_Kuang_Resume.pdf" class="btn btn-ghost">Resume ↓</a>
+      </div>
+
+    </div>
+
+    <!-- Right: photo -->
+    <div class="hero-photo-wrap">
+
+      <div class="photo-frame">
+        <img src="photo.jpg" alt="Kenneth Kuang" />
+      </div>
+
+      <div class="photo-meta">
+        <span class="photo-meta-name">Kenneth Kuang</span>
+        <span class="photo-meta-tag">ME · DS</span>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ── PROJECTS ── -->
+<div class="section-wrap" id="projects" data-bg="#e4e6ef">
+  <p class="section-eyebrow reveal">Projects</p>
+  <h2 class="section-title reveal">Selected<br>Work</h2>
+
+  <div class="proj-list reveal">
+
+    <div class="proj-item"
+         data-proj-num="03"
+         data-proj-title="Turret Defense System"
+         data-proj-img="project-3.jpg"
+         data-proj-tags="Mechanical Design,Embedded Systems,Computer Vision"
+         data-proj-desc="Designed and built an automated turret defense system capable of tracking and engaging targets in real time. Integrated servo-driven pan/tilt mechanics, a computer vision targeting pipeline, and an embedded microcontroller to create a fully autonomous fire-control loop from detection to engagement.">
+      <span class="proj-num">01</span>
+      <div class="proj-body">
+        <h3 class="proj-title">Turret Defense System</h3>
+        <div class="proj-tags-row">
+          <span class="proj-tag">Mechanical Design</span>
+          <span class="proj-tag">Embedded Systems</span>
+          <span class="proj-tag">Computer Vision</span>
+        </div>
+        <p class="proj-desc">Automated pan/tilt turret with real-time target tracking — servo mechanics, embedded control, and a computer vision pipeline running a full detection-to-engagement loop.</p>
+      </div>
+      <div class="proj-thumb">
+        <img src="project-3.jpg" alt="Turret Defense System" onerror="this.style.display='none';this.parentElement.querySelector('.proj-thumb-ph').style.display='flex'">
+        <div class="proj-thumb-ph" style="display:none">
+          <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          Drop project-3.jpg
+        </div>
+      </div>
+    </div>
+
+    <div class="proj-item"
+         data-proj-num="02"
+         data-proj-title="FPV Drone"
+         data-proj-img="project-2.jpg"
+         data-proj-tags="Hardware,3D Printing,Robotics Club"
+         data-proj-desc="Designed and 3D-printed custom drone frames from scratch, built CAD models to optimize weight distribution across the frame, and tuned ESC and flight controller settings across multiple build iterations to achieve stable, reliable flight performance.">
+      <span class="proj-num">02</span>
+      <div class="proj-body">
+        <h3 class="proj-title">FPV Drone</h3>
+        <div class="proj-tags-row">
+          <span class="proj-tag">Hardware</span>
+          <span class="proj-tag">3D Printing</span>
+          <span class="proj-tag">Robotics Club</span>
+        </div>
+        <p class="proj-desc">Designed and 3D-printed custom drone frames, optimized weight distribution in CAD, and tuned ESC settings across multiple prototypes to improve flight stability.</p>
+      </div>
+      <div class="proj-thumb">
+        <img src="project-2.jpg" alt="FPV Drone" onerror="this.style.display='none';this.parentElement.querySelector('.proj-thumb-ph').style.display='flex'">
+        <div class="proj-thumb-ph" style="display:none">
+          <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          Drop project-2.jpg
+        </div>
+      </div>
+    </div>
+
+    <div class="proj-item"
+         data-proj-num="01"
+         data-proj-title="Space Rover"
+         data-proj-img="project-1.jpg"
+         data-proj-tags="Mechanical Design,SEDS,SolidWorks"
+         data-proj-desc="Modeling chassis and drivetrain components in SolidWorks for a competition rover, researching stress and environmental tolerances, and coordinating vendor quotes to identify the most cost-efficient build strategy. Focused on optimizing weight-to-strength ratios and designing for the harsh mechanical conditions of Mars-analog terrain.">
+      <span class="proj-num">03</span>
+      <div class="proj-body">
+        <h3 class="proj-title">Space Rover</h3>
+        <div class="proj-tags-row">
+          <span class="proj-tag">Mechanical Design</span>
+          <span class="proj-tag">SEDS</span>
+          <span class="proj-tag">SolidWorks</span>
+        </div>
+        <p class="proj-desc">Modeling chassis and drivetrain components for a competition rover, researching stress tolerances, and coordinating vendor quotes for the most cost-efficient build.</p>
+      </div>
+      <div class="proj-thumb">
+        <img src="project-1.jpg" alt="Space Rover" onerror="this.style.display='none';this.parentElement.querySelector('.proj-thumb-ph').style.display='flex'">
+        <div class="proj-thumb-ph" style="display:none">
+          <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          Drop project-1.jpg
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ── EXPERIENCE ── -->
+<div class="section-wrap" id="experience" data-bg="#eae8e0">
+  <p class="section-eyebrow reveal">Experience</p>
+  <h2 class="section-title reveal">Work &amp;<br>Leadership</h2>
+
+  <div class="tl-columns reveal">
+
+    <!-- ── Work Experience column ── -->
+    <div class="tl-col">
+      <p class="tl-col-label">Work Experience</p>
+      <div class="timeline">
+
+        <div class="tl-item">
+          <div class="tl-period">Jan — May 2025</div>
+          <div class="tl-company">NASA L'SPACE</div>
+          <div class="tl-role">Mechanical Engineer · Outreach Officer <span class="tl-location">· Remote</span></div>
+          <ul class="tl-bullets">
+            <li>Modeled spacecraft subsystems in Siemens NX; analyzed simulation outputs</li>
+            <li>Co-authored and delivered full Preliminary Design Review with cross-functional team</li>
+          </ul>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-period">Jun — Aug 2024</div>
+          <div class="tl-company">Fortune Metal Group</div>
+          <div class="tl-role">Manufacturing Engineer Intern <span class="tl-location">· Santa Fe Springs, CA</span></div>
+          <ul class="tl-bullets">
+            <li>Built process flows for end-of-life electronics — 15% efficiency gain</li>
+            <li>Led bi-monthly kaizen events driving 20% operational speed improvement</li>
+            <li>Implemented lean double-bin system to streamline material flow</li>
+          </ul>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-period">Feb — Jun 2024</div>
+          <div class="tl-company">OC Riptide</div>
+          <div class="tl-role">Marketing &amp; PR Intern <span class="tl-location">· Orange County, CA</span></div>
+          <ul class="tl-bullets">
+            <li>Ran outreach campaigns via theme nights; tracked reach with spreadsheet analytics</li>
+            <li>Translated data insights into actionable marketing strategies with ops team</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ── Leadership column ── -->
+    <div class="tl-col">
+      <p class="tl-col-label">Leadership</p>
+      <div class="timeline">
+
+        <div class="tl-item leadership">
+          <div class="tl-period">Sept 2025 — Present</div>
+          <div class="tl-company">Robotics, Drones &amp; AI Club</div>
+          <div class="tl-role">Vice President <span class="tl-location">· University of Redlands</span></div>
+          <ul class="tl-bullets">
+            <li>Direct FPV drone design, fabrication, and flight testing projects</li>
+            <li>Mentor members on CAD, component selection, and embedded systems</li>
+          </ul>
+        </div>
+
+        <div class="tl-item leadership">
+          <div class="tl-period">Jan 2024 — Present</div>
+          <div class="tl-company">SEDS Redlands</div>
+          <div class="tl-role">Vice President <span class="tl-location">· University of Redlands</span></div>
+          <ul class="tl-bullets">
+            <li>Lead interdisciplinary teams on space engineering projects and design reviews</li>
+            <li>Oversee Space Rover mechanical team; manage build milestones and outreach events</li>
+          </ul>
+        </div>
+
+        <div class="tl-item leadership">
+          <div class="tl-period">2017 — 2023</div>
+          <div class="tl-company">Boy Scouts of America</div>
+          <div class="tl-role">Eagle Scout <span class="tl-location">· Rank Achieved 2023</span></div>
+          <ul class="tl-bullets">
+            <li>Earned the highest rank in scouting after 6 years of service, leadership, and merit achievement</li>
+            <li>Led and planned an Eagle Scout service project coordinating volunteers and managing logistics</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ── ABOUT ── -->
+<div class="section-wrap" id="about" data-bg="#e7ede5">
+  <div class="dot-matrix-deco" aria-hidden="true">
+    <div class="dm-row"><span class="on"></span><span></span><span class="on"></span><span></span><span class="on"></span><span></span><span class="on"></span><span></span><span class="on"></span><span></span><span class="on"></span><span></span><span class="on"></span><span></span><span class="on"></span><span></span><span class="on"></span><span></span><span class="on"></span></div>
+    <div class="dm-row"><span></span><span class="on"></span><span></span><span class="on"></span><span></span><span class="on"></span><span></span><span class="on"></span><span></span><span class="on"></span><span></span><span class="on"></span><span></span><span class="on"></span><span></span><span class="on"></span><span></span><span class="on"></span><span></span></div>
+    <div class="dm-row"><span class="on"></span><span></span><span class="on"></span><span></span><span class="on"></span><span></span><span class="on"></span><span></span><span class="on"></span><span></span><span class="on"></span><span></span><span class="on"></span><span></span><span class="on"></span><span></span><span class="on"></span><span></span><span class="on"></span></div>
+    <div class="dm-row"><span></span><span class="on"></span><span></span><span class="on"></span><span></span><span class="on"></span><span></span><span class="on"></span><span></span><span class="on"></span><span></span><span class="on"></span><span></span><span class="on"></span><span></span><span class="on"></span><span></span><span class="on"></span><span></span></div>
+  </div>
+  <p class="section-eyebrow reveal">About</p>
+
+  <div class="bento about-bento reveal">
+
+    <div class="card card-bio">
+      <div class="card-label">Bio</div>
+      <p>
+        I am a current dual degree student at the University of Redlands pursuing a B.S. Mechanical Engineering
+        and B.A. Data Science through the 3-2 Engineering Program, graduating in 2028.
+      </p>
+      <p>
+        I am really interested in the Aerospace, Defense, and Drone industry and want to make a impact in those fields.
+        I am currently focused on computer vision, as most of my current projects have revolved around these concepts.
+      </p>
+      <p>
+        Outside of engineering, I really enjoy reviewing food, being active with sports, and spending time in the outdoors.
+      </p>
+    </div>
+
+    <div class="card card-focus">
+      <div class="card-label">Currently focused on</div>
+      <ul class="focus-list">
+        <li><span class="focus-dot"></span>Computer Vision</li>
+        <li><span class="focus-dot"></span>Autonomous Systems</li>
+        <li><span class="focus-dot"></span>Physical + Digital Integration</li>
+      </ul>
+      <div class="card-label" style="margin-top:0.75rem">Interested in</div>
+      <div class="tools-list" style="margin-top:0.25rem">
+        <span class="tool-chip">Defense</span>
+        <span class="tool-chip">Aerospace</span>
+        <span class="tool-chip">Drones</span>
+        <span class="tool-chip">Manufacturing</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-label">Tools &amp; Software</div>
+      <div class="tools-list">
+        <span class="tool-chip">SolidWorks</span>
+        <span class="tool-chip">Fusion 360</span>
+        <span class="tool-chip">Siemens NX</span>
+        <span class="tool-chip">MATLAB</span>
+        <span class="tool-chip">Python</span>
+        <span class="tool-chip">GD&amp;T</span>
+        <span class="tool-chip">Revit</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-label">Languages</div>
+      <div class="tools-list">
+        <span class="tool-chip">English</span>
+        <span class="tool-chip">Cantonese</span>
+        <span class="tool-chip">Mandarin</span>
+      </div>
+    </div>
+
+
+  </div>
+
+  <!-- Outside the lab -->
+  <div class="reveal" style="margin-top: 3rem;">
+    <div class="dot-matrix-deco" aria-hidden="true">
+      <div class="dm-row"><span></span><span class="on"></span><span></span><span></span><span class="on"></span><span></span><span></span><span class="on"></span><span></span><span></span><span class="on"></span><span></span><span></span><span class="on"></span><span></span><span></span><span class="on"></span><span></span><span></span></div>
+      <div class="dm-row"><span class="on"></span><span></span><span class="on"></span><span></span><span></span><span class="on"></span><span></span><span class="on"></span><span></span><span></span><span class="on"></span><span></span><span class="on"></span><span></span><span></span><span class="on"></span><span></span><span class="on"></span><span></span></div>
+      <div class="dm-row"><span></span><span class="on"></span><span></span><span></span><span class="on"></span><span></span><span></span><span class="on"></span><span></span><span></span><span class="on"></span><span></span><span></span><span class="on"></span><span></span><span></span><span class="on"></span><span></span><span></span></div>
+      <div class="dm-row"><span class="on"></span><span></span><span></span><span class="on"></span><span></span><span class="on"></span><span></span><span></span><span class="on"></span><span></span><span class="on"></span><span></span><span></span><span class="on"></span><span></span><span class="on"></span><span></span><span></span><span class="on"></span></div>
+    </div>
+    <p class="section-eyebrow" style="margin-bottom:1.5rem">Outside the lab</p>
+    <div class="interests-grid">
+
+      <div class="interest-tile">
+        <div class="interest-img">
+          <img src="interest-basketball.jpg" alt="Basketball" onerror="this.style.display='none'">
+        </div>
+        <span class="interest-label">Basketball</span>
+      </div>
+
+      <div class="interest-tile">
+        <div class="interest-img">
+          <img src="interest-tennis.jpg" alt="Tennis" onerror="this.style.display='none'">
+        </div>
+        <span class="interest-label">Tennis</span>
+      </div>
+
+      <div class="interest-tile">
+        <div class="interest-img">
+          <img src="snowboarding.jpg" alt="Snowboarding" onerror="this.style.display='none'">
+        </div>
+        <span class="interest-label">Snowboarding</span>
+      </div>
+
+      <div class="interest-tile">
+        <div class="interest-img">
+          <img src="outdoor.jpeg" alt="Outdoors" onerror="this.style.display='none'">
+        </div>
+        <span class="interest-label">Outdoors &amp; Hiking</span>
+      </div>
+
+    </div>
+
+    <!-- Instagram link card -->
+    <a href="https://www.instagram.com/kennethgrubs/" target="_blank" rel="noopener" class="ig-card">
+      <div class="ig-header">
+        <div class="ig-avatar">
+          <img src="kgrubspfp.jpg" alt="kennethgrubs" style="width:100%;height:100%;object-fit:cover;display:block;">
+        </div>
+        <div class="ig-info">
+          <div class="ig-handle">@kennethgrubs</div>
+          <div class="ig-sub">Food Blogger Account</div>
+        </div>
+        <span class="ig-follow">View on Instagram ↗</span>
+      </div>
+      <div class="ig-photos">
+        <div class="ig-photo">
+          <img src="ig-1.jpg" alt="Food post" onerror="this.style.display='none'">
+          <div class="ig-photo-ph">ig-1.jpg</div>
+        </div>
+        <div class="ig-photo">
+          <img src="ig-2.jpg" alt="Food post" onerror="this.style.display='none'">
+          <div class="ig-photo-ph">ig-2.jpg</div>
+        </div>
+        <div class="ig-photo">
+          <img src="ig-3.jpg" alt="Food post" onerror="this.style.display='none'">
+          <div class="ig-photo-ph">ig-3.jpg</div>
+        </div>
+      </div>
+    </a>
+  </div>
+
+</div>
+
+<!-- ── CONTACT ── -->
+<div class="section-wrap" id="contact" data-bg="#ece2e2">
+  <p class="section-eyebrow reveal">Contact</p>
+
+  <div class="bento contact-bento reveal">
+
+    <div class="card contact-big">
+      <div>
+        <p>
+          Whether you have a project in mind, a role you think I'd fit,
+          or just want to connect — I'm always happy to talk.
+        </p>
+        <p>
+          Currently available for full-time roles, internships, and
+          engineering collaborations.
+        </p>
+      </div>
+      <a href="mailto:kennethkuang36@gmail.com" class="btn btn-primary" style="align-self:flex-start">
+        Send a message
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+
+    <div class="contact-links bento" style="border-radius:var(--radius); overflow:hidden;">
+      <!-- Email — copy only, no mailto -->
+      <a href="#" class="contact-link" data-copy="kennethkuang36@gmail.com">
+        <svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg>
+        kennethkuang36@gmail.com
+        <span class="cl-right">
+          <span class="cl-copy"><svg viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></span>
+          <span class="contact-link-label">Email</span>
+        </span>
+      </a>
+      <a href="https://www.linkedin.com/in/kennethkuang36/" class="contact-link" target="_blank" rel="noopener" data-copy="https://www.linkedin.com/in/kennethkuang36/">
+        <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7H10V9h4v2a6 6 0 0 1 2-3z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        linkedin.com/in/kennethkuang36
+        <span class="cl-right">
+          <span class="cl-copy"><svg viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></span>
+          <span class="contact-link-label">Connect</span>
+        </span>
+      </a>
+      <a href="https://github.com/kennethk36" class="contact-link" target="_blank" rel="noopener" data-copy="https://github.com/kennethk36">
+        <svg viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+        github.com/kennethk36
+        <span class="cl-right">
+          <span class="cl-copy"><svg viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></span>
+          <span class="contact-link-label">Code</span>
+        </span>
+      </a>
+      <a href="https://www.instagram.com/kennethgrubs/" class="contact-link" target="_blank" rel="noopener" data-copy="https://www.instagram.com/kennethgrubs/">
+        <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+        @kennethgrubs
+        <span class="cl-right">
+          <span class="cl-copy"><svg viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></span>
+          <span class="contact-link-label">Food</span>
+        </span>
+      </a>
+      <a href="resume.pdf" class="contact-link" download="Kenneth_Kuang_Resume.pdf">
+        <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+        Resume / CV
+        <span class="cl-right">
+          <span class="contact-link-label">Download</span>
+        </span>
+      </a>
+    </div>
+
+  </div>
+</div>
+
+<!-- ── HIDDEN PROJECT DETAIL PANELS ── -->
+
+<div class="proj-detail" id="pd-01">
+  <div class="pd-hero-img">
+    <img src="project-1.jpg" alt="Space Rover" onerror="this.style.display='none'">
+    <div class="pd-img-ph">
+      <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+      Drop project-1.jpg for hero image
+    </div>
+  </div>
+  <div class="pd-header">
+    <div class="pd-num">Project 01</div>
+    <h2 class="pd-title">Space Rover</h2>
+    <p class="pd-summary">Competition-ready rover with a custom SolidWorks chassis designed for Mars-analog terrain — built for the University Rover Challenge.</p>
+    <div class="pd-tags">
+      <span class="proj-tag">Mechanical Design</span>
+      <span class="proj-tag">SEDS</span>
+      <span class="proj-tag">SolidWorks</span>
+      <span class="proj-tag">FEA</span>
+    </div>
+  </div>
+  <div class="pd-section">
+    <p class="pd-section-label">Problem / Goal</p>
+    <p>Design a lightweight but structurally sound rover chassis capable of navigating Mars-analog terrain for a university competition. The system had to meet strict weight and cost constraints while surviving rough outdoor conditions.</p>
+  </div>
+  <div class="pd-section">
+    <p class="pd-section-label">Design & Implementation</p>
+    <ul class="pd-bullets">
+      <li>Modeled the full chassis frame and drivetrain assembly in SolidWorks, optimizing for torsional rigidity under uneven loading</li>
+      <li>Ran finite element analysis (FEA) to identify stress concentrations and iteratively redesigned critical joint geometry</li>
+      <li>Designed modular wheel mounts for rapid field replacement during competition rounds</li>
+      <li>Coordinated vendor quotes for aluminum extrusion and 3D-printed components to stay within build budget</li>
+    </ul>
+  </div>
+  <div class="pd-section">
+    <p class="pd-section-label">Challenges</p>
+    <ul class="pd-bullets">
+      <li>Balancing aggressive weight reduction with structural integrity under dynamic terrain loads</li>
+      <li>Material sourcing within competition budget constraints — required evaluating 6+ vendors</li>
+      <li>Coordinating design change reviews across a multi-person team with varying CAD experience levels</li>
+    </ul>
+  </div>
+  <div class="pd-section">
+    <p class="pd-section-label">Results</p>
+    <p>Chassis design completed and reviewed by the full engineering team. Currently in fabrication phase ahead of competition deadline.</p>
+  </div>
+  <div class="pd-section">
+    <p class="pd-section-label">Media</p>
+    <div class="pd-media-grid">
+      <div class="pd-media-slot wide">
+        <img src="project-1-img-1.jpg" onerror="this.style.display='none'">
+        <span>project-1-img-1.jpg — CAD render / hero shot</span>
+      </div>
+      <div class="pd-media-slot">
+        <img src="project-1-img-2.jpg" onerror="this.style.display='none'">
+        <span>project-1-img-2.jpg</span>
+      </div>
+      <div class="pd-media-slot">
+        <img src="project-1-img-3.jpg" onerror="this.style.display='none'">
+        <span>project-1-img-3.jpg</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="proj-detail" id="pd-02">
+  <div class="pd-hero-img">
+    <img src="project-2.jpg" alt="FPV Drone" onerror="this.style.display='none'">
+    <div class="pd-img-ph">
+      <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+      Drop project-2.jpg for hero image
+    </div>
+  </div>
+  <div class="pd-header">
+    <div class="pd-num">Project 02</div>
+    <h2 class="pd-title">FPV Drone</h2>
+    <p class="pd-summary">Custom-built FPV racing drone with a 3D-printed frame designed from scratch — optimized for weight distribution and stable flight.</p>
+    <div class="pd-tags">
+      <span class="proj-tag">Hardware</span>
+      <span class="proj-tag">3D Printing</span>
+      <span class="proj-tag">Robotics Club</span>
+      <span class="proj-tag">CAD</span>
+      <span class="proj-tag">Electronics</span>
+    </div>
+  </div>
+  <div class="pd-section">
+    <p class="pd-section-label">Problem / Goal</p>
+    <p>Design and fabricate a functional FPV drone from the ground up — no kit, custom frame. The goal was to understand the full hardware stack from frame geometry to ESC tuning, while building a platform for the Robotics Club to demonstrate and teach with.</p>
+  </div>
+  <div class="pd-section">
+    <p class="pd-section-label">Design & Implementation</p>
+    <ul class="pd-bullets">
+      <li>Designed a custom frame in CAD, iterating arm length and motor spacing to optimize center-of-mass and weight distribution</li>
+      <li>3D-printed frame prototypes in PLA, tested under load, then upgraded to PETG for impact resistance</li>
+      <li>Assembled flight electronics: F4 flight controller, 4-in-1 ESC stack, brushless motors, VTX, and FPV camera</li>
+      <li>Tuned Betaflight PID settings across multiple test flights to achieve stable hover and responsive control</li>
+    </ul>
+  </div>
+  <div class="pd-section">
+    <p class="pd-section-label">Challenges</p>
+    <ul class="pd-bullets">
+      <li>Vibration resonance in early frame designs causing gyro noise — resolved by adding damping standoffs under the FC stack</li>
+      <li>ESC desync issues under throttle bursts — diagnosed and fixed via BlHeli ESC configuration adjustments</li>
+      <li>Weight creep across iterations required going back to CAD to eliminate material from non-structural areas</li>
+    </ul>
+  </div>
+  <div class="pd-section">
+    <p class="pd-section-label">Results</p>
+    <p>Achieved stable, controllable flight on the final build. Drone used as a club demonstration platform and reference design for new members learning hardware assembly.</p>
+  </div>
+  <div class="pd-section">
+    <p class="pd-section-label">Media</p>
+    <div class="pd-media-grid">
+      <div class="pd-media-slot wide">
+        <img src="project-2-img-1.jpg" onerror="this.style.display='none'">
+        <span>project-2-img-1.jpg — hero / flight shot</span>
+      </div>
+      <div class="pd-media-slot">
+        <img src="project-2-img-2.jpg" onerror="this.style.display='none'">
+        <span>project-2-img-2.jpg — frame CAD</span>
+      </div>
+      <div class="pd-media-slot">
+        <img src="project-2-img-3.jpg" onerror="this.style.display='none'">
+        <span>project-2-img-3.jpg — build photo</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="proj-detail" id="pd-03">
+  <div class="pd-hero-img">
+    <img src="project-3.jpg" alt="Turret Defense System" onerror="this.style.display='none'">
+    <div class="pd-img-ph">
+      <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+      Drop project-3.jpg for hero image
+    </div>
+  </div>
+  <div class="pd-header">
+    <div class="pd-num">Project 03</div>
+    <h2 class="pd-title">Turret Defense System</h2>
+    <p class="pd-summary">Designed and built an automated turret defense system with real-time target tracking — integrating servo-driven pan/tilt mechanics, embedded microcontroller logic, and a computer vision pipeline into a fully autonomous fire-control loop.</p>
+    <div class="pd-tags">
+      <span class="proj-tag">Mechanical Design</span>
+      <span class="proj-tag">Embedded Systems</span>
+      <span class="proj-tag">Computer Vision</span>
+      <span class="proj-tag">Servo Control</span>
+    </div>
+  </div>
+  <div class="pd-section">
+    <p class="pd-section-label">Problem / Goal</p>
+    <p>Build a fully autonomous turret system capable of detecting, tracking, and engaging moving targets without human input. The goal was to close the entire detection-to-engagement loop in hardware — from real-time image processing through mechanical actuation — while keeping latency low enough for practical tracking performance.</p>
+  </div>
+  <div class="pd-section">
+    <p class="pd-section-label">System Overview</p>
+    <p>The system is structured as three tightly coupled layers: perception, control, and actuation.</p>
+    <ul class="pd-bullets">
+      <li>Perception: camera feed processed through a computer vision pipeline for target detection and centroid estimation</li>
+      <li>Control: PID-based feedback loop on pan and tilt axes, running on an embedded microcontroller</li>
+      <li>Actuation: dual-servo pan/tilt mechanism designed and fabricated to mount the camera and firing mechanism as a single rigid assembly</li>
+    </ul>
+  </div>
+  <div class="pd-section">
+    <p class="pd-section-label">Design & Implementation</p>
+    <ul class="pd-bullets">
+      <li>Designed the pan/tilt bracket geometry to minimize moment arm and reduce servo load during rapid slews</li>
+      <li>Implemented target detection using color/shape thresholding and contour analysis to extract target centroid in real time</li>
+      <li>Tuned PID gains for both axes independently — balancing tracking speed against overshoot and oscillation</li>
+      <li>Integrated firing actuation trigger logic with a deadband zone to prevent false engagements on edge detections</li>
+      <li>Iterated on mount stiffness after observing resonance feedback between servo motion and camera image stability</li>
+    </ul>
+  </div>
+  <div class="pd-section">
+    <p class="pd-section-label">Challenges</p>
+    <ul class="pd-bullets">
+      <li>Latency in the vision-to-servo loop caused tracking lag — resolved by optimizing frame processing and reducing resolution on the detection pass</li>
+      <li>Mechanical resonance between the servo mounts and camera introduced oscillation into the PID loop — fixed with stiffer bracket geometry</li>
+      <li>Distinguishing target from background clutter required iterating on detection thresholds across varying lighting conditions</li>
+    </ul>
+  </div>
+  <div class="pd-section">
+    <p class="pd-section-label">Results</p>
+    <p>Achieved reliable real-time tracking of moving targets with sub-100ms latency from detection to servo response. The system successfully engaged targets autonomously across a range of speeds and trajectories, validating the full closed-loop pipeline from perception through actuation.</p>
+  </div>
+  <div class="pd-section">
+    <p class="pd-section-label">Media</p>
+    <div class="pd-media-grid">
+      <div class="pd-media-slot wide">
+        <img src="project-3-img-1.jpg" onerror="this.style.display='none'">
+        <span>project-3-img-1.jpg — turret assembly / CAD render</span>
+      </div>
+      <div class="pd-media-slot">
+        <img src="project-3-img-2.jpg" onerror="this.style.display='none'">
+        <span>project-3-img-2.jpg — vision pipeline / tracking demo</span>
+      </div>
+      <div class="pd-media-slot">
+        <img src="project-3-img-3.jpg" onerror="this.style.display='none'">
+        <span>project-3-img-3.jpg — electronics / wiring</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── PROJECT PANEL (populated by JS) ── -->
+<div id="proj-modal-overlay" class="proj-modal-overlay" role="dialog" aria-modal="true" aria-label="Project details">
+  <div class="proj-modal" id="proj-modal">
+    <div class="proj-modal-topbar">
+      <button class="proj-modal-back" id="proj-modal-close" aria-label="Back to projects">
+        <svg viewBox="0 0 24 24"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+        Back
+      </button>
+      <span class="proj-modal-topbar-title" id="proj-modal-topbar-title">Project</span>
+    </div>
+    <div id="proj-modal-content"></div>
+  </div>
+</div>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <span>&copy; 2026 Kenneth Kuang</span>
+  <div class="footer-status">
+    <span class="footer-dot"></span>
+    ME &amp; Data Science
+  </div>
+</footer>
+
+<script>
+  // Cursor glow
+  const glow = document.getElementById('cursor-glow');
+  document.addEventListener('mousemove', e => {
+    glow.style.setProperty('--cx', e.clientX + 'px');
+    glow.style.setProperty('--cy', e.clientY + 'px');
+  });
+
+  // Scroll reveal
+  const revealObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      const siblings = [...entry.target.parentElement.querySelectorAll('.reveal')];
+      const idx = siblings.indexOf(entry.target);
+      entry.target.style.transitionDelay = (idx * 0.07) + 's';
+      entry.target.classList.add('visible');
+      revealObserver.unobserve(entry.target);
+    });
+  }, { threshold: 0.08 });
+
+  document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+  // Nav — hide on scroll down, show on scroll up + hover near top
+  const siteNav = document.getElementById('site-nav');
+  const hoverZone = document.getElementById('nav-hover-zone');
+  let lastScrollY = 0;
+  let navPeeking = false;
+
+  window.addEventListener('scroll', () => {
+    const y = window.scrollY;
+    if (y > lastScrollY && y > 120 && !navPeeking) {
+      siteNav.classList.add('nav-hidden');
+    } else if (y < lastScrollY) {
+      siteNav.classList.remove('nav-hidden');
+    }
+    lastScrollY = y;
+  }, { passive: true });
+
+  // show on hover near top
+  hoverZone.addEventListener('mouseenter', () => {
+    navPeeking = true;
+    siteNav.classList.remove('nav-hidden');
+  });
+  hoverZone.addEventListener('mouseleave', () => { navPeeking = false; });
+  siteNav.addEventListener('mouseenter', () => {
+    navPeeking = true;
+    siteNav.classList.remove('nav-hidden');
+  });
+  siteNav.addEventListener('mouseleave', () => { navPeeking = false; });
+
+  // Section background color transitions
+  const sections = document.querySelectorAll('[data-bg]');
+  const bgObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        document.body.style.backgroundColor = entry.target.dataset.bg;
+      }
+    });
+  }, { threshold: 0.3 });
+
+  sections.forEach(s => bgObserver.observe(s));
+
+  // ── Project panel ──
+  const modalOverlay   = document.getElementById('proj-modal-overlay');
+  const modalEl        = document.getElementById('proj-modal');
+  const modalClose     = document.getElementById('proj-modal-close');
+  const modalContent   = document.getElementById('proj-modal-content');
+  const modalTopTitle  = document.getElementById('proj-modal-topbar-title');
+
+  function openModal(item) {
+    const num    = (item.dataset.projNum || '').replace(/^0+/, ''); // "01" → "1"
+    const detail = document.getElementById('pd-0' + num) || document.getElementById('pd-' + num);
+    if (modalTopTitle) modalTopTitle.textContent = item.dataset.projTitle || 'Project';
+
+    if (detail) {
+      // Clone the detail panel content into the modal
+      modalContent.innerHTML = detail.innerHTML;
+    } else {
+      // Fallback: build minimal view from data attributes
+      const tags = (item.dataset.projTags || '').split(',')
+        .map(t => `<span class="proj-tag">${t.trim()}</span>`).join('');
+      modalContent.innerHTML = `
+        <div class="pd-hero-img"><div class="pd-img-ph">
+          <svg viewBox="0 0 24 24" width="28" height="28" stroke="currentColor" fill="none" stroke-width="1">
+            <rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/>
+          </svg>No image yet</div></div>
+        <div class="pd-header">
+          <div class="pd-num">Project ${item.dataset.projNum}</div>
+          <h2 class="pd-title">${item.dataset.projTitle || ''}</h2>
+          <div class="pd-tags" style="margin-top:1rem">${tags}</div>
+        </div>
+        <div class="pd-section">
+          <p class="pd-section-label">Overview</p>
+          <p>${item.dataset.projDesc || ''}</p>
+        </div>`;
+    }
+
+    modalOverlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    modalEl.scrollTop = 0;
+  }
+
+  function closeModal() {
+    modalOverlay.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  document.querySelectorAll('.proj-item').forEach(item => {
+    item.addEventListener('click', () => openModal(item));
+  });
+
+  modalClose.addEventListener('click', closeModal);
+  modalOverlay.addEventListener('click', e => {
+    if (e.target === modalOverlay) closeModal();
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') closeModal();
+  });
+
+  // Clipboard copy for contact links
+  document.querySelectorAll('.contact-link[data-copy]').forEach(link => {
+    const copyBtn = link.querySelector('.cl-copy');
+    const label   = link.querySelector('.contact-link-label');
+    const origLabel = label ? label.textContent : '';
+
+    function doCopy(e) {
+      // Email row: prevent navigation entirely
+      if (link.getAttribute('href') === '#') e.preventDefault();
+      // For copy icon clicks: don't follow the link
+      if (e.target.closest('.cl-copy')) e.preventDefault();
+
+      navigator.clipboard.writeText(link.dataset.copy).then(() => {
+        link.classList.add('copied');
+        if (label) label.textContent = 'Copied!';
+        setTimeout(() => {
+          link.classList.remove('copied');
+          if (label) label.textContent = origLabel;
+        }, 1800);
+      });
+    }
+
+    // Email row: whole row copies
+    if (link.getAttribute('href') === '#') {
+      link.addEventListener('click', doCopy);
+    }
+    // Other rows: only the copy icon triggers copy
+    if (copyBtn) {
+      copyBtn.addEventListener('click', doCopy);
+    }
+  });
+</script>
+</body>
+</html>
