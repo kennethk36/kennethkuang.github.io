@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Kenneth Kuang — Mechanical Engineering & Data Science</title>
+  <title>Kenneth Kuang — Mechanical Engineer & Data Scientist</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300;1,9..40,400&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,400&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300;1,9..40,400&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -27,7 +27,7 @@
 
       --sans:    'DM Sans', system-ui, sans-serif;
       --display: 'Outfit', system-ui, sans-serif;
-      --mono:    'DM Mono', monospace;
+      --mono:    'Space Mono', monospace;
 
       --radius-sm: 4px;
       --radius:    8px;
@@ -108,10 +108,10 @@
     }
 
     .nav-logo {
-      font-family: var(--mono);
-      font-size: 0.58rem;
-      font-weight: 500;
-      letter-spacing: 0.24em;
+      font-family: var(--sans);
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
       text-transform: uppercase;
       color: var(--text);
       opacity: 0.7;
@@ -137,10 +137,10 @@
     .nav-links a {
       display: block;
       padding: 0.35rem 0.9rem;
-      font-family: var(--mono);
-      font-size: 0.58rem;
-      font-weight: 400;
-      letter-spacing: 0.14em;
+      font-family: var(--sans);
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
       text-transform: uppercase;
       color: var(--muted2);
       transition: color 0.15s;
@@ -155,10 +155,10 @@
       border: 1px solid rgba(0,0,0,0.15);
       background: transparent;
       color: var(--text) !important;
-      font-family: var(--mono);
-      font-size: 0.58rem;
-      font-weight: 400;
-      letter-spacing: 0.14em;
+      font-family: var(--sans);
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
       text-transform: uppercase;
       border-radius: 6px;
       transition: background 0.15s, color 0.15s, border-color 0.15s;
@@ -188,9 +188,10 @@
       display: inline-flex;
       align-items: center;
       gap: 0.75rem;
-      font-family: var(--mono);
-      font-size: 0.65rem;
-      letter-spacing: 0.2em;
+      font-family: var(--sans);
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
       color: var(--muted3);
       margin-bottom: 1.25rem;
@@ -229,9 +230,10 @@
     }
 
     .card-label {
-      font-family: var(--mono);
-      font-size: 0.62rem;
-      letter-spacing: 0.18em;
+      font-family: var(--sans);
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
       text-transform: uppercase;
       color: var(--muted3);
       margin-bottom: 1rem;
@@ -300,9 +302,10 @@
       background: transparent;
       border: 1px solid var(--border-md);
       border-radius: var(--radius-sm);
-      font-family: var(--mono);
+      font-family: var(--sans);
       font-size: 0.62rem;
-      letter-spacing: 0.14em;
+      font-weight: 500;
+      letter-spacing: 0.03em;
       text-transform: uppercase;
       color: var(--muted3);
       margin-bottom: 2rem;
@@ -313,12 +316,7 @@
       background: #4ade80;
       border-radius: 50%;
       box-shadow: 0 0 6px rgba(74,222,128,0.7);
-      animation: blink 2.4s ease-in-out infinite;
       flex-shrink: 0;
-    }
-    @keyframes blink {
-      0%,100% { opacity: 1; }
-      50%      { opacity: 0.25; }
     }
 
     .hero-name {
@@ -408,9 +406,9 @@
       stroke-width: 1;
     }
     .photo-placeholder span {
-      font-family: var(--mono);
+      font-family: var(--sans);
       font-size: 0.6rem;
-      letter-spacing: 0.16em;
+      letter-spacing: 0.04em;
       text-transform: uppercase;
       color: var(--muted2);
     }
@@ -424,16 +422,18 @@
       padding: 0 0.1rem;
     }
     .photo-meta-name {
-      font-family: var(--mono);
-      font-size: 0.62rem;
-      letter-spacing: 0.14em;
+      font-family: var(--sans);
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.03em;
       text-transform: uppercase;
       color: var(--muted3);
     }
     .photo-meta-tag {
-      font-family: var(--mono);
+      font-family: var(--sans);
       font-size: 0.6rem;
-      letter-spacing: 0.1em;
+      font-weight: 500;
+      letter-spacing: 0.03em;
       text-transform: uppercase;
       color: var(--muted2);
     }
@@ -518,9 +518,9 @@
       flex-shrink: 0;
     }
     .tech-geo-sep .tg-label {
-      font: 600 9px/1 var(--mono);
+      font: 600 9px/1 var(--sans);
       color: var(--muted2);
-      letter-spacing: 0.12em;
+      letter-spacing: 0.04em;
       text-transform: uppercase;
       flex-shrink: 0;
     }
@@ -541,9 +541,10 @@
       color: var(--text);
     }
     .stat-label {
-      font-family: var(--mono);
+      font-family: var(--sans);
       font-size: 0.6rem;
-      letter-spacing: 0.14em;
+      font-weight: 500;
+      letter-spacing: 0.03em;
       text-transform: uppercase;
       color: var(--muted2);
       margin-top: 0.3rem;
@@ -579,9 +580,10 @@
       color: var(--accent);
     }
     .stat-desc {
-      font-family: var(--mono);
+      font-family: var(--sans);
       font-size: 0.6rem;
-      letter-spacing: 0.14em;
+      font-weight: 500;
+      letter-spacing: 0.03em;
       text-transform: uppercase;
       color: var(--muted2);
     }
@@ -593,8 +595,8 @@
     }
     .focus-list li {
       display: flex; align-items: center; gap: 0.6rem;
-      font-family: var(--mono); font-size: 0.72rem;
-      letter-spacing: 0.04em; color: var(--text);
+      font-family: var(--sans); font-size: 0.82rem;
+      letter-spacing: 0.01em; color: var(--text);
     }
     .focus-dot {
       display: block; width: 5px; height: 5px;
@@ -604,8 +606,8 @@
       display: flex; align-items: center; gap: 0.5rem;
       margin-top: auto; padding-top: 0.75rem;
       border-top: 1px solid var(--border);
-      font-family: var(--mono); font-size: 0.6rem;
-      letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted2);
+      font-family: var(--sans); font-size: 0.6rem; font-weight: 500;
+      letter-spacing: 0.03em; text-transform: uppercase; color: var(--muted2);
     }
     .focus-status-dot {
       display: block; width: 6px; height: 6px; border-radius: 50%;
@@ -619,9 +621,10 @@
       background: transparent;
       border: 1px solid var(--border-md);
       border-radius: 2px;
-      font-family: var(--mono);
-      font-size: 0.62rem;
-      letter-spacing: 0.06em;
+      font-family: var(--sans);
+      font-size: 0.68rem;
+      font-weight: 500;
+      letter-spacing: 0.01em;
       color: var(--muted3);
       transition: border-color 0.15s, color 0.15s;
     }
@@ -647,9 +650,10 @@
     .proj-item:hover .proj-thumb { opacity: 1; transform: scale(1.02); }
 
     .proj-num {
-      font-family: var(--mono);
-      font-size: 0.58rem;
-      letter-spacing: 0.16em;
+      font-family: var(--sans);
+      font-size: 0.62rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
       color: var(--muted2);
       align-self: start;
       padding-top: 0.25rem;
@@ -678,9 +682,10 @@
       padding: 0.18rem 0.5rem;
       border: 1px solid var(--border-md);
       border-radius: 2px;
-      font-family: var(--mono);
-      font-size: 0.54rem;
-      letter-spacing: 0.1em;
+      font-family: var(--sans);
+      font-size: 0.58rem;
+      font-weight: 500;
+      letter-spacing: 0.02em;
       text-transform: uppercase;
       color: var(--muted3);
     }
@@ -698,8 +703,8 @@
       border: 1px solid var(--border-md);
       overflow: hidden;
       background: rgba(255,255,255,0.28);
-      opacity: 0.72;
-      transition: opacity 0.3s ease, transform 0.3s ease;
+      opacity: 1;
+      transition: transform 0.3s ease;
       position: relative;
     }
     .proj-thumb img {
@@ -714,9 +719,10 @@
       align-items: center;
       justify-content: center;
       gap: 0.6rem;
-      font-family: var(--mono);
+      font-family: var(--sans);
       font-size: 0.54rem;
-      letter-spacing: 0.14em;
+      font-weight: 500;
+      letter-spacing: 0.03em;
       text-transform: uppercase;
       color: var(--muted2);
     }
@@ -788,9 +794,10 @@
       background: none;
       border: none;
       cursor: pointer;
-      font-family: var(--mono);
-      font-size: 0.58rem;
-      letter-spacing: 0.14em;
+      font-family: var(--sans);
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: 0.03em;
       text-transform: uppercase;
       color: var(--muted3);
       padding: 0.3rem 0;
@@ -806,9 +813,10 @@
       stroke-linejoin: round;
     }
     .proj-modal-topbar-title {
-      font-family: var(--mono);
-      font-size: 0.58rem;
-      letter-spacing: 0.14em;
+      font-family: var(--sans);
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.03em;
       text-transform: uppercase;
       color: var(--muted2);
     }
@@ -856,9 +864,10 @@
       align-items: center;
       justify-content: center;
       gap: 0.75rem;
-      font-family: var(--mono);
+      font-family: var(--sans);
       font-size: 0.58rem;
-      letter-spacing: 0.14em;
+      font-weight: 500;
+      letter-spacing: 0.03em;
       text-transform: uppercase;
       color: var(--muted2);
       position: absolute;
@@ -876,9 +885,10 @@
       border-bottom: 1px solid var(--border);
     }
     .pd-num {
-      font-family: var(--mono);
-      font-size: 0.55rem;
-      letter-spacing: 0.22em;
+      font-family: var(--sans);
+      font-size: 0.6rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
       text-transform: uppercase;
       color: var(--muted2);
       margin-bottom: 0.5rem;
@@ -913,9 +923,10 @@
     .pd-section:last-child { border-bottom: none; }
 
     .pd-section-label {
-      font-family: var(--mono);
-      font-size: 0.55rem;
-      letter-spacing: 0.22em;
+      font-family: var(--sans);
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
       text-transform: uppercase;
       color: var(--accent);
       margin-bottom: 1rem;
@@ -983,10 +994,17 @@
       position: absolute;
       inset: 0;
     }
+    .pd-media-slot video {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      position: absolute;
+      inset: 0;
+    }
     .pd-media-slot span {
-      font-family: var(--mono);
-      font-size: 0.5rem;
-      letter-spacing: 0.12em;
+      font-family: var(--sans);
+      font-size: 0.52rem;
+      font-weight: 500;
+      letter-spacing: 0.02em;
       text-transform: uppercase;
       color: var(--muted2);
       text-align: center;
@@ -1026,16 +1044,18 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      font-family: var(--mono);
+      font-family: var(--sans);
       font-size: 0.5rem;
-      letter-spacing: 0.1em;
+      font-weight: 500;
+      letter-spacing: 0.02em;
       text-transform: uppercase;
       color: var(--muted2);
     }
     .interest-label {
-      font-family: var(--mono);
-      font-size: 0.58rem;
-      letter-spacing: 0.12em;
+      font-family: var(--sans);
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: 0.02em;
       text-transform: uppercase;
       color: var(--muted3);
       text-align: center;
@@ -1088,17 +1108,19 @@
       line-height: 1.2;
     }
     .ig-sub {
-      font-family: var(--mono);
-      font-size: 0.5rem;
-      letter-spacing: 0.12em;
+      font-family: var(--sans);
+      font-size: 0.55rem;
+      font-weight: 500;
+      letter-spacing: 0.03em;
       text-transform: uppercase;
       color: var(--muted2);
       margin-top: 0.15rem;
     }
     .ig-follow {
-      font-family: var(--mono);
-      font-size: 0.52rem;
-      letter-spacing: 0.12em;
+      font-family: var(--sans);
+      font-size: 0.58rem;
+      font-weight: 600;
+      letter-spacing: 0.03em;
       text-transform: uppercase;
       color: var(--accent);
       border: 1px solid var(--accent);
@@ -1132,9 +1154,10 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      font-family: var(--mono);
+      font-family: var(--sans);
       font-size: 0.46rem;
-      letter-spacing: 0.1em;
+      font-weight: 500;
+      letter-spacing: 0.02em;
       text-transform: uppercase;
       color: var(--muted2);
     }
@@ -1148,9 +1171,10 @@
       border-radius: var(--radius-sm);
       display: grid;
       place-items: center;
-      font-family: var(--mono);
+      font-family: var(--sans);
       font-size: 0.6rem;
-      letter-spacing: 0.12em;
+      font-weight: 500;
+      letter-spacing: 0.02em;
       text-transform: uppercase;
       color: var(--muted2);
       overflow: hidden;
@@ -1214,9 +1238,10 @@
       gap: 0.4rem;
     }
     .contact-link-label {
-      font-family: var(--mono);
-      font-size: 0.58rem;
-      letter-spacing: 0.12em;
+      font-family: var(--sans);
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.03em;
       text-transform: uppercase;
       color: var(--muted2);
       transition: color 0.15s;
@@ -1256,9 +1281,10 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      font-family: var(--mono);
-      font-size: 0.62rem;
-      letter-spacing: 0.1em;
+      font-family: var(--sans);
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: 0.03em;
       text-transform: uppercase;
       color: var(--muted2);
     }
@@ -1274,7 +1300,6 @@
       border-radius: 50%;
       box-shadow: 0 0 5px rgba(74,222,128,0.6);
       display: inline-block;
-      animation: blink 2.4s ease-in-out infinite;
     }
 
     /* ─────────────────────────────────────── */
@@ -1289,9 +1314,10 @@
       align-items: start;
     }
     .tl-col-label {
-      font-family: var(--mono);
-      font-size: 0.55rem;
-      letter-spacing: 0.22em;
+      font-family: var(--sans);
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
       text-transform: uppercase;
       color: var(--accent);
       margin-bottom: 2rem;
@@ -1351,9 +1377,10 @@
     }
 
     .tl-period {
-      font-family: var(--mono);
-      font-size: 0.6rem;
-      letter-spacing: 0.08em;
+      font-family: var(--sans);
+      font-size: 0.62rem;
+      font-weight: 500;
+      letter-spacing: 0.02em;
       color: var(--muted3);
       margin-bottom: 0.3rem;
     }
@@ -1365,9 +1392,10 @@
       margin-bottom: 0.15rem;
     }
     .tl-role {
-      font-family: var(--mono);
-      font-size: 0.62rem;
-      letter-spacing: 0.09em;
+      font-family: var(--sans);
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
       text-transform: uppercase;
       color: var(--accent);
       margin-bottom: 0.85rem;
@@ -1467,13 +1495,14 @@
         <div class="dm-row"><span class="on"></span><span></span><span class="on"></span><span></span><span class="on"></span><span></span><span class="on"></span><span></span><span class="on"></span><span></span><span class="on"></span><span></span><span class="on"></span><span></span><span class="on"></span><span></span><span class="on"></span><span></span><span class="on"></span></div>
         <div class="dm-row"><span></span><span class="on"></span><span></span><span class="on"></span><span></span><span class="on"></span><span></span><span class="on"></span><span></span><span class="on"></span><span></span><span class="on"></span><span></span><span class="on"></span><span></span><span class="on"></span><span></span><span class="on"></span><span></span></div>
       </div>
+      <p style="font-family:var(--sans);font-size:0.7rem;font-weight:600;letter-spacing:0.04em;text-transform:uppercase;color:var(--muted3);margin-bottom:0.25rem">University of Redlands — B.A. Data Science</p>
+      <p style="font-family:var(--sans);font-size:0.7rem;font-weight:600;letter-spacing:0.04em;text-transform:uppercase;color:var(--muted3);margin-bottom:0.75rem">Washington University in St. Louis — B.S. Mechanical Engineering</p>
       <h1 class="hero-name">
         Kenneth<span class="line-two">Kuang</span>
       </h1>
 
       <p class="hero-sub">
-        Mechanical Engineer &amp; Data Scientist — building systems where
-        physics, simulation, and data converge.
+        Mechanical Engineer &amp; Data Scientist
       </p>
 
       <div class="hero-actions">
@@ -1505,35 +1534,9 @@
 
 <!-- ── PROJECTS ── -->
 <div class="section-wrap" id="projects" data-bg="#e4e6ef">
-  <p class="section-eyebrow reveal">Projects</p>
-  <h2 class="section-title reveal">Selected<br>Work</h2>
+  <h2 class="section-title reveal">Projects</h2>
 
   <div class="proj-list reveal">
-
-    <div class="proj-item"
-         data-proj-num="03"
-         data-proj-title="Turret Defense System"
-         data-proj-img="project-3.jpg"
-         data-proj-tags="Mechanical Design,Embedded Systems,Computer Vision"
-         data-proj-desc="Designed and built an automated turret defense system capable of tracking and engaging targets in real time. Integrated servo-driven pan/tilt mechanics, a computer vision targeting pipeline, and an embedded microcontroller to create a fully autonomous fire-control loop from detection to engagement.">
-      <span class="proj-num">01</span>
-      <div class="proj-body">
-        <h3 class="proj-title">Turret Defense System</h3>
-        <div class="proj-tags-row">
-          <span class="proj-tag">Mechanical Design</span>
-          <span class="proj-tag">Embedded Systems</span>
-          <span class="proj-tag">Computer Vision</span>
-        </div>
-        <p class="proj-desc">Automated pan/tilt turret with real-time target tracking — servo mechanics, embedded control, and a computer vision pipeline running a full detection-to-engagement loop.</p>
-      </div>
-      <div class="proj-thumb">
-        <img src="project-3.jpg" alt="Turret Defense System" onerror="this.style.display='none';this.parentElement.querySelector('.proj-thumb-ph').style.display='flex'">
-        <div class="proj-thumb-ph" style="display:none">
-          <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
-          Drop project-3.jpg
-        </div>
-      </div>
-    </div>
 
     <div class="proj-item"
          data-proj-num="02"
@@ -1541,7 +1544,7 @@
          data-proj-img="project-2.jpg"
          data-proj-tags="Hardware,3D Printing,Robotics Club"
          data-proj-desc="Designed and 3D-printed custom drone frames from scratch, built CAD models to optimize weight distribution across the frame, and tuned ESC and flight controller settings across multiple build iterations to achieve stable, reliable flight performance.">
-      <span class="proj-num">02</span>
+      <span class="proj-num">01</span>
       <div class="proj-body">
         <h3 class="proj-title">FPV Drone</h3>
         <div class="proj-tags-row">
@@ -1561,26 +1564,51 @@
     </div>
 
     <div class="proj-item"
-         data-proj-num="01"
-         data-proj-title="Space Rover"
-         data-proj-img="project-1.jpg"
-         data-proj-tags="Mechanical Design,SEDS,SolidWorks"
-         data-proj-desc="Modeling chassis and drivetrain components in SolidWorks for a competition rover, researching stress and environmental tolerances, and coordinating vendor quotes to identify the most cost-efficient build strategy. Focused on optimizing weight-to-strength ratios and designing for the harsh mechanical conditions of Mars-analog terrain.">
-      <span class="proj-num">03</span>
+         data-proj-num="03"
+         data-proj-title="Turret Defense System"
+         data-proj-img="project-3.jpg"
+         data-proj-tags="Mechanical Design,Embedded Systems,Computer Vision"
+         data-proj-desc="Designed and built an automated turret defense system capable of tracking and engaging targets in real time. Integrated servo-driven pan/tilt mechanics, a computer vision targeting pipeline, and an embedded microcontroller to create a fully autonomous fire-control loop from detection to engagement.">
+      <span class="proj-num">02</span>
       <div class="proj-body">
-        <h3 class="proj-title">Space Rover</h3>
+        <h3 class="proj-title">Turret Defense System</h3>
         <div class="proj-tags-row">
           <span class="proj-tag">Mechanical Design</span>
-          <span class="proj-tag">SEDS</span>
-          <span class="proj-tag">SolidWorks</span>
+          <span class="proj-tag">Embedded Systems</span>
+          <span class="proj-tag">Computer Vision</span>
         </div>
-        <p class="proj-desc">Modeling chassis and drivetrain components for a competition rover, researching stress tolerances, and coordinating vendor quotes for the most cost-efficient build.</p>
+        <p class="proj-desc">Automated pan/tilt turret with real-time target tracking — servo mechanics, embedded control, and a computer vision pipeline running a full detection-to-engagement loop.</p>
       </div>
       <div class="proj-thumb">
-        <img src="project-1.jpg" alt="Space Rover" onerror="this.style.display='none';this.parentElement.querySelector('.proj-thumb-ph').style.display='flex'">
+        <img src="project-3.jpg" alt="Turret Defense System" onerror="this.style.display='none';this.parentElement.querySelector('.proj-thumb-ph').style.display='flex'">
         <div class="proj-thumb-ph" style="display:none">
           <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
-          Drop project-1.jpg
+          Drop project-3.jpg
+        </div>
+      </div>
+    </div>
+
+    <div class="proj-item"
+         data-proj-num="01"
+         data-proj-title="Computer Vision Capstone"
+         data-proj-img="cv-hero.jpg"
+         data-proj-tags="YOLOv8,Computer Vision,Python"
+         data-proj-desc="Capstone project applying YOLOv8 for real-time object detection and classification. Trained and fine-tuned a custom model on a domain-specific dataset, optimizing for inference speed and accuracy.">
+      <span class="proj-num">03</span>
+      <div class="proj-body">
+        <h3 class="proj-title">Computer Vision Capstone</h3>
+        <div class="proj-tags-row">
+          <span class="proj-tag">YOLOv8</span>
+          <span class="proj-tag">Computer Vision</span>
+          <span class="proj-tag">Python</span>
+        </div>
+        <p class="proj-desc">Real-time object detection and classification using YOLOv8 — trained on a custom dataset with optimized inference pipeline.</p>
+      </div>
+      <div class="proj-thumb">
+        <img src="cv-hero.jpg" alt="Computer Vision Capstone" onerror="this.style.display='none';this.parentElement.querySelector('.proj-thumb-ph').style.display='flex'">
+        <div class="proj-thumb-ph" style="display:none">
+          <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          Drop cv-hero.jpg
         </div>
       </div>
     </div>
@@ -1599,6 +1627,15 @@
     <div class="tl-col">
       <p class="tl-col-label">Work Experience</p>
       <div class="timeline">
+
+        <div class="tl-item">
+          <div class="tl-period">May 2026 — Present</div>
+          <div class="tl-company">Glenair</div>
+          <div class="tl-role">Design Engineering Intern <span class="tl-location">· Arcadia, CA</span></div>
+          <ul class="tl-bullets">
+            <li>Supporting design engineering team on connector and interconnect system development</li>
+          </ul>
+        </div>
 
         <div class="tl-item">
           <div class="tl-period">Jan — May 2025</div>
@@ -1640,7 +1677,7 @@
       <div class="timeline">
 
         <div class="tl-item leadership">
-          <div class="tl-period">Sept 2025 — Present</div>
+          <div class="tl-period">Sept 2025 — Apr 2026</div>
           <div class="tl-company">Robotics, Drones &amp; AI Club</div>
           <div class="tl-role">Vice President <span class="tl-location">· University of Redlands</span></div>
           <ul class="tl-bullets">
@@ -1690,8 +1727,7 @@
     <div class="card card-bio">
       <div class="card-label">Bio</div>
       <p>
-        I am a current dual degree student at the University of Redlands pursuing a B.S. Mechanical Engineering
-        and B.A. Data Science through the 3-2 Engineering Program, graduating in 2028.
+        I completed my B.A. in Data Science at the University of Redlands and am now pursuing a B.S. in Mechanical Engineering at Washington University in St. Louis, graduating in 2028.
       </p>
       <p>
         I am really interested in the Aerospace, Defense, and Drone industry and want to make a impact in those fields.
@@ -1756,9 +1792,9 @@
 
       <div class="interest-tile">
         <div class="interest-img">
-          <img src="interest-basketball.jpg" alt="Basketball" onerror="this.style.display='none'">
+          <img src="interest-travel.jpg" alt="Travel" onerror="this.style.display='none'">
         </div>
-        <span class="interest-label">Basketball</span>
+        <span class="interest-label">Travel</span>
       </div>
 
       <div class="interest-tile">
@@ -1795,20 +1831,6 @@
           <div class="ig-sub">Food Blogger Account</div>
         </div>
         <span class="ig-follow">View on Instagram ↗</span>
-      </div>
-      <div class="ig-photos">
-        <div class="ig-photo">
-          <img src="ig-1.jpg" alt="Food post" onerror="this.style.display='none'">
-          <div class="ig-photo-ph">ig-1.jpg</div>
-        </div>
-        <div class="ig-photo">
-          <img src="ig-2.jpg" alt="Food post" onerror="this.style.display='none'">
-          <div class="ig-photo-ph">ig-2.jpg</div>
-        </div>
-        <div class="ig-photo">
-          <img src="ig-3.jpg" alt="Food post" onerror="this.style.display='none'">
-          <div class="ig-photo-ph">ig-3.jpg</div>
-        </div>
       </div>
     </a>
   </div>
@@ -1888,126 +1910,224 @@
 
 <div class="proj-detail" id="pd-01">
   <div class="pd-hero-img">
-    <img src="project-1.jpg" alt="Space Rover" onerror="this.style.display='none'">
+    <img src="cv-hero.jpg" alt="Computer Vision Capstone" onload="this.nextElementSibling.style.display='none'" onerror="this.style.display='none'">
     <div class="pd-img-ph">
       <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
-      Drop project-1.jpg for hero image
+      Drop cv-hero.jpg for hero image
     </div>
   </div>
   <div class="pd-header">
     <div class="pd-num">Project 01</div>
-    <h2 class="pd-title">Space Rover</h2>
-    <p class="pd-summary">Competition-ready rover with a custom SolidWorks chassis designed for Mars-analog terrain — built for the University Rover Challenge.</p>
+    <h2 class="pd-title">Computer Vision Capstone</h2>
+    <p class="pd-summary">Data science capstone applying YOLOv8 to aerial vehicle detection — three controlled experiments across confidence threshold, IoU threshold, and image size, plus live drone footage tests at 150ft, 250ft, and 350ft to find the highest viable detection altitude.</p>
     <div class="pd-tags">
-      <span class="proj-tag">Mechanical Design</span>
-      <span class="proj-tag">SEDS</span>
-      <span class="proj-tag">SolidWorks</span>
-      <span class="proj-tag">FEA</span>
+      <span class="proj-tag">YOLOv8</span>
+      <span class="proj-tag">Computer Vision</span>
+      <span class="proj-tag">Python</span>
+      <span class="proj-tag">COCO Dataset</span>
+      <span class="proj-tag">Deep Learning</span>
     </div>
   </div>
   <div class="pd-section">
-    <p class="pd-section-label">Problem / Goal</p>
-    <p>Design a lightweight but structurally sound rover chassis capable of navigating Mars-analog terrain for a university competition. The system had to meet strict weight and cost constraints while surviving rough outdoor conditions.</p>
-  </div>
-  <div class="pd-section">
-    <p class="pd-section-label">Design & Implementation</p>
+    <p class="pd-section-label">Goals</p>
     <ul class="pd-bullets">
-      <li>Modeled the full chassis frame and drivetrain assembly in SolidWorks, optimizing for torsional rigidity under uneven loading</li>
-      <li>Ran finite element analysis (FEA) to identify stress concentrations and iteratively redesigned critical joint geometry</li>
-      <li>Designed modular wheel mounts for rapid field replacement during competition rounds</li>
-      <li>Coordinated vendor quotes for aluminum extrusion and 3D-printed components to stay within build budget</li>
+      <li><strong>Goal 1 — Understand inference tuning:</strong> systematically study how confidence threshold, IoU threshold, and input image size affect real-world detection output — not just make it run, but know exactly which parameters to pull and why</li>
+      <li><strong>Goal 2 — Max drone altitude:</strong> determine how high a DJI drone can fly above a parking lot before detection breaks down, and whether tuning those parameters can push that ceiling higher</li>
     </ul>
   </div>
   <div class="pd-section">
-    <p class="pd-section-label">Challenges</p>
+    <p class="pd-section-label">Dataset</p>
     <ul class="pd-bullets">
-      <li>Balancing aggressive weight reduction with structural integrity under dynamic terrain loads</li>
-      <li>Material sourcing within competition budget constraints — required evaluating 6+ vendors</li>
-      <li>Coordinating design change reviews across a multi-person team with varying CAD experience levels</li>
+      <li>Flew a DJI drone over a parking lot at 150ft, 250ft, and 350ft to capture real aerial footage — primary test environment for evaluating detection performance at increasing altitude</li>
+      <li>COCO val2017 — 5,000 images, 36,781 annotations across 80 categories (31% small, 35% medium, 34% large objects). Pre-annotated bounding boxes meant no manual labeling — focus stayed on model behavior and tuning</li>
+      <li>Person appears 11,000+ times in COCO; rare classes like toaster appear only 9 times — the model's confidence reflects that training distribution</li>
     </ul>
-  </div>
-  <div class="pd-section">
-    <p class="pd-section-label">Results</p>
-    <p>Chassis design completed and reviewed by the full engineering team. Currently in fabrication phase ahead of competition deadline.</p>
-  </div>
-  <div class="pd-section">
-    <p class="pd-section-label">Media</p>
-    <div class="pd-media-grid">
+    <div class="pd-media-grid" style="margin-top:1.25rem">
       <div class="pd-media-slot wide">
-        <img src="project-1-img-1.jpg" onerror="this.style.display='none'">
-        <span>project-1-img-1.jpg — CAD render / hero shot</span>
-      </div>
-      <div class="pd-media-slot">
-        <img src="project-1-img-2.jpg" onerror="this.style.display='none'">
-        <span>project-1-img-2.jpg</span>
-      </div>
-      <div class="pd-media-slot">
-        <img src="project-1-img-3.jpg" onerror="this.style.display='none'">
-        <span>project-1-img-3.jpg</span>
+        <img src="cv-dataset.jpg" onerror="this.style.display='none'">
       </div>
     </div>
+  </div>
+  <div class="pd-section">
+    <p class="pd-section-label">How YOLOv8 Works</p>
+    <ul class="pd-bullets">
+      <li><strong>Backbone (the eyes):</strong> scans the image at three zoom levels to capture features at different scales</li>
+      <li><strong>Neck (the brain):</strong> merges all three scale maps into a single unified feature representation</li>
+      <li><strong>Head (the decision maker):</strong> outputs bounding box coordinates and class label in one forward pass — no separate region proposal step, which is why YOLO is fast enough for real-time video</li>
+    </ul>
+  </div>
+  <div class="pd-section">
+    <p class="pd-section-label">Exp 1 — Confidence Threshold</p>
+    <p style="margin-bottom:0.75rem">Swept confidence from 0.05 to 0.75 on a 52-object image. At conf=0.05, the model returned 86 boxes — 34 false positives. At conf=0.75, it returned 0 — missed every object. Too low floods the output with noise; too high and real detections disappear.</p>
+    <ul class="pd-bullets" style="margin-bottom:0.75rem">
+      <li><strong>Best setting: 0.25–0.35</strong> depending on scene clutter — recovers real detections without flooding the system with false positives</li>
+    </ul>
+    <div class="pd-media-grid" style="margin-top:0">
+      <div class="pd-media-slot wide">
+        <img src="cv-confidence-graph.jpg" onerror="this.style.display='none'">
+      </div>
+    </div>
+  </div>
+  <div class="pd-section">
+    <p class="pd-section-label">Exp 2 — IoU Threshold</p>
+    <p style="margin-bottom:0.75rem">IoU (Intersection over Union) controls when overlapping boxes get merged into one. Swept from 0.10 to 0.80 — detection count stayed relatively flat (18–23 boxes) across the range, but box behavior changed meaningfully. A low threshold aggressively merges nearby detections into one clean box; a high threshold allows duplicate boxes to survive.</p>
+    <ul class="pd-bullets">
+      <li><strong>Lower IoU is better for single-object scenarios</strong> — aggressive merging produces one clean box per target rather than a cluster of overlapping detections</li>
+    </ul>
+  </div>
+  <div class="pd-section">
+    <p class="pd-section-label">Exp 3 — Input Image Size</p>
+    <p style="margin-bottom:0.75rem">Tested on a frame with 32 small ground-truth objects. Larger input resolution lets the model see more detail — critical for small or distant targets:</p>
+    <ul class="pd-bullets" style="margin-bottom:0.75rem">
+      <li>320px → 15 found, 82ms inference</li>
+      <li>480px → 21 found, 116ms</li>
+      <li>640px → 32 found, 106ms &nbsp;<strong>(minimum viable for aerial footage)</strong></li>
+      <li>960px → 34 found, 180ms</li>
+    </ul>
+    <p style="margin-bottom:0.75rem">Dropping to 320px missed half the targets. 640 is the floor for aerial use; step up to 960 if the hardware budget allows the extra 74ms.</p>
+    <div class="pd-media-grid" style="margin-top:0">
+      <div class="pd-media-slot wide">
+        <img src="cv-imgsize-graph.jpg" onerror="this.style.display='none'">
+      </div>
+    </div>
+  </div>
+  <div class="pd-section">
+    <p class="pd-section-label">Drone Altitude Experiments</p>
+    <p style="margin-bottom:0.75rem">Filmed the same parking lot at 150ft, 250ft, and 350ft (FAA ceiling: 400ft). Default settings work well at 150ft — at higher altitudes, lowering confidence and raising image size recovers most of the missed detections:</p>
+    <ul class="pd-bullets">
+      <li><strong>150ft</strong> — conf=0.35, imgsz=640: very reliable at baseline, no tuning needed</li>
+      <li><strong>250ft</strong> — conf=0.20, imgsz=960: recovered most missed detections vs. default settings</li>
+      <li><strong>350ft</strong> — conf=0.15, imgsz=1280: improved significantly, still a viable operating altitude</li>
+    </ul>
+    <p style="margin-top:0.5rem">350ft is the practical ceiling. Camera angle matters too — top-down detects far better than angled shots, since COCO was trained on ground-level photos not aerial perspectives.</p>
+  </div>
+  <div class="pd-section">
+    <p class="pd-section-label">Takeaway</p>
+    <p>The real output wasn't a detection pipeline — it was a clear mental model of which inference parameters matter, when to pull them, and what the tradeoffs cost. Confidence and image size have the biggest practical impact; IoU matters most when scene density is high. Those findings directly inform how to deploy detection in any real-world autonomous system.</p>
+  </div>
+  <div class="pd-section">
+    <p class="pd-section-label">Demo</p>
+    <video controls style="width:100%;display:block;border-radius:8px;margin-top:0.5rem;background:#000;">
+      <source src="cv-demo.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
   </div>
 </div>
 
 <div class="proj-detail" id="pd-02">
   <div class="pd-hero-img">
-    <img src="project-2.jpg" alt="FPV Drone" onerror="this.style.display='none'">
-    <div class="pd-img-ph">
-      <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
-      Drop project-2.jpg for hero image
-    </div>
+    <img src="drone-hero.jpg" alt="FPV Drone" onerror="this.style.display='none'">
   </div>
   <div class="pd-header">
     <div class="pd-num">Project 02</div>
     <h2 class="pd-title">FPV Drone</h2>
-    <p class="pd-summary">Custom-built FPV racing drone with a 3D-printed frame designed from scratch — optimized for weight distribution and stable flight.</p>
+    <p class="pd-summary">Designed and 3D-printed a custom FPV drone frame from scratch in Fusion 360 — three full structural iterations, a mid-build electronics pivot, and a first flight on V3.</p>
     <div class="pd-tags">
-      <span class="proj-tag">Hardware</span>
+      <span class="proj-tag">Fusion 360</span>
       <span class="proj-tag">3D Printing</span>
-      <span class="proj-tag">Robotics Club</span>
-      <span class="proj-tag">CAD</span>
-      <span class="proj-tag">Electronics</span>
+      <span class="proj-tag">Structural Analysis</span>
+      <span class="proj-tag">Embedded Systems</span>
     </div>
   </div>
   <div class="pd-section">
     <p class="pd-section-label">Problem / Goal</p>
-    <p>Design and fabricate a functional FPV drone from the ground up — no kit, custom frame. The goal was to understand the full hardware stack from frame geometry to ESC tuning, while building a platform for the Robotics Club to demonstrate and teach with.</p>
+    <p>Design, fabricate, and fly a fully custom FPV drone — no kit frame, no template. Every structural decision had to be made from scratch: arm geometry, motor spacing, wire routing, and electronics integration. The constraint was the school's 3D printer, which only stocked PLA — a denser, more brittle material than the carbon fiber or nylon typically used in drone frames — meaning weight and stiffness had to be carefully managed through geometry rather than material selection.</p>
   </div>
   <div class="pd-section">
-    <p class="pd-section-label">Design & Implementation</p>
+    <p class="pd-section-label">Structural Engineering</p>
+    <p style="margin-bottom:0.75rem">The core structural challenge was the drone's motor arms, which behave as cantilevered beams under thrust load. The governing equation for max deflection of a cantilever is:</p>
+    <p style="font-family:var(--mono);font-size:0.85rem;background:var(--surface-2);padding:0.75rem 1rem;border-radius:6px;margin-bottom:0.75rem">δ_max = PL³ / (3EI)</p>
     <ul class="pd-bullets">
-      <li>Designed a custom frame in CAD, iterating arm length and motor spacing to optimize center-of-mass and weight distribution</li>
-      <li>3D-printed frame prototypes in PLA, tested under load, then upgraded to PETG for impact resistance</li>
-      <li>Assembled flight electronics: F4 flight controller, 4-in-1 ESC stack, brushless motors, VTX, and FPV camera</li>
-      <li>Tuned Betaflight PID settings across multiple test flights to achieve stable hover and responsive control</li>
+      <li><strong>P</strong> — thrust load per motor arm (force from propeller under full throttle)</li>
+      <li><strong>L</strong> — arm length from root to motor mount (fixed by motor spacing requirements)</li>
+      <li><strong>E</strong> — Young's modulus of PLA (~3.5 GPa), a material constant we couldn't change</li>
+      <li><strong>I</strong> — second moment of area of the arm cross-section — the one variable fully under our control</li>
+    </ul>
+    <p style="margin-top:0.75rem">Since L and E were effectively fixed, reducing deflection meant maximizing I — the cross-sectional moment of inertia. For a rectangular cross-section, I = bh³/12, meaning arm height h has a cubic effect on stiffness. V3 increased arm height significantly over V2, which eliminated the flex and vibration that had made V2 unflyable.</p>
+  </div>
+  <div class="pd-section">
+    <p class="pd-section-label">Iterations</p>
+
+    <div style="margin-bottom:1.5rem">
+      <p style="font-family:var(--sans);font-weight:700;font-size:0.72rem;color:var(--accent);margin-bottom:0.4rem">V1 — Prop Clearance &amp; Wire Routing</p>
+      <p style="margin-bottom:0.75rem">First iteration was too compact — arms were too short and the frame had no internal channels for wire routing. Propellers clipped the frame under load. No wire management meant a tangled build that was impossible to troubleshoot. Grounded before first flight attempt.</p>
+      <div class="pd-media-grid" style="margin-top:0">
+        <div class="pd-media-slot">
+          <img src="drone-v1a.jpg" onerror="this.style.display='none'">
+        </div>
+        <div class="pd-media-slot">
+          <img src="drone-v1b.jpg" onerror="this.style.display='none'">
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-bottom:1.5rem">
+      <p style="font-family:var(--sans);font-weight:700;font-size:0.72rem;color:var(--accent);margin-bottom:0.4rem">V2 — Structural Flex &amp; Vibration</p>
+      <p style="margin-bottom:0.75rem">Extended the arms for proper prop clearance and added wire routing channels. However, the arms were designed too thin to reduce weight — the small cross-sectional height meant I was low, making deflection under thrust unacceptably high. At full throttle the arms would flex and vibrate, feeding oscillations back into the flight controller and making stable flight impossible.</p>
+      <div class="pd-media-grid" style="margin-top:0">
+        <div class="pd-media-slot">
+          <img src="drone-v2a.jpg" onerror="this.style.display='none'">
+        </div>
+        <div class="pd-media-slot">
+          <img src="drone-v2b.jpg" onerror="this.style.display='none'">
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <p style="font-family:var(--sans);font-weight:700;font-size:0.72rem;color:var(--accent);margin-bottom:0.4rem">V3 — Structural Fix &amp; First Flight</p>
+      <p style="margin-bottom:0.75rem">Increased arm cross-sectional height to raise I, reducing deflection per the beam equation. Added internal wire routing and redesigned the central plate for cleaner component mounting. The increased stiffness eliminated vibration and the flight controller stabilized immediately. V3 achieved first successful flight.</p>
+      <div class="pd-media-grid" style="margin-top:0">
+        <div class="pd-media-slot">
+          <img src="drone-v3a.jpg" onerror="this.style.display='none'">
+        </div>
+        <div class="pd-media-slot">
+          <img src="drone-v3b.jpg" onerror="this.style.display='none'">
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="pd-section">
+    <p class="pd-section-label">Electronics &amp; Hardware</p>
+    <ul class="pd-bullets">
+      <li>Originally wired with 4 individual ESCs — discovered mid-build that the flight controller's signal protocol was incompatible with the individual ESC firmware. Pivoted to a 4-in-1 ESC stack, which solved the compatibility issue and consolidated the wiring significantly</li>
+      <li>Rerouted all power and signal wires cleanly through the frame channels — this turned out to be critical for troubleshooting across iterations, as messy wiring had hidden connection failures in V1</li>
+      <li>Full component stack: flight controller (FC), 4-in-1 ESC, brushless motors, LiPo battery, FPV camera, and video transmitter (VTX)</li>
+      <li>FPV video chain: the camera feeds a live analog signal directly into the VTX, which broadcasts on a 5.8 GHz frequency to a set of FPV goggles — giving a real-time first-person view of the flight with near-zero latency. The VTX also connects to the FC, which can inject on-screen display (OSD) data — battery voltage, throttle %, and orientation — overlaid on the video feed so you can monitor telemetry without looking away from the goggles</li>
     </ul>
   </div>
   <div class="pd-section">
-    <p class="pd-section-label">Challenges</p>
+    <p class="pd-section-label">Limitations &amp; Constraints</p>
     <ul class="pd-bullets">
-      <li>Vibration resonance in early frame designs causing gyro noise — resolved by adding damping standoffs under the FC stack</li>
-      <li>ESC desync issues under throttle bursts — diagnosed and fixed via BlHeli ESC configuration adjustments</li>
-      <li>Weight creep across iterations required going back to CAD to eliminate material from non-structural areas</li>
+      <li>PLA-only constraint from the school printer meant working around ~1.24 g/cm³ density — significantly heavier than carbon fiber or nylon alternatives used in most performance FPV builds</li>
+      <li>Flight time limited to ~3 minutes due to the weight penalty of the PLA frame on the battery</li>
     </ul>
   </div>
   <div class="pd-section">
     <p class="pd-section-label">Results</p>
-    <p>Achieved stable, controllable flight on the final build. Drone used as a club demonstration platform and reference design for new members learning hardware assembly.</p>
+    <p>V3 achieved stable, controllable first flight with ~3 minutes flight time. The iteration process produced clear, engineering-justified improvements at each step — from geometry fixes, to stiffness analysis, to a full electronics pivot. A future iteration would use a lighter material (nylon or carbon fiber) to extend flight time and reduce structural mass budget.</p>
   </div>
+
   <div class="pd-section">
-    <p class="pd-section-label">Media</p>
+    <p class="pd-section-label">Electronics &amp; Wiring</p>
+    <div class="pd-media-grid">
+      <div class="pd-media-slot">
+        <img src="drone-wiring.jpg" onerror="this.style.display='none'">
+      </div>
+      <div class="pd-media-slot">
+        <img src="drone-internals.jpg" onerror="this.style.display='none'">
+      </div>
+    </div>
+  </div>
+
+  <div class="pd-section">
+    <p class="pd-section-label">First Flight</p>
     <div class="pd-media-grid">
       <div class="pd-media-slot wide">
-        <img src="project-2-img-1.jpg" onerror="this.style.display='none'">
-        <span>project-2-img-1.jpg — hero / flight shot</span>
-      </div>
-      <div class="pd-media-slot">
-        <img src="project-2-img-2.jpg" onerror="this.style.display='none'">
-        <span>project-2-img-2.jpg — frame CAD</span>
-      </div>
-      <div class="pd-media-slot">
-        <img src="project-2-img-3.jpg" onerror="this.style.display='none'">
-        <span>project-2-img-3.jpg — build photo</span>
+        <video controls style="width:100%;border-radius:8px;">
+          <source src="drone-flight.mov" type="video/quicktime">
+          <source src="drone-flight.mov" type="video/mp4">
+        </video>
       </div>
     </div>
   </div>
@@ -2016,73 +2136,84 @@
 <div class="proj-detail" id="pd-03">
   <div class="pd-hero-img">
     <img src="project-3.jpg" alt="Turret Defense System" onerror="this.style.display='none'">
-    <div class="pd-img-ph">
-      <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
-      Drop project-3.jpg for hero image
-    </div>
   </div>
   <div class="pd-header">
     <div class="pd-num">Project 03</div>
     <h2 class="pd-title">Turret Defense System</h2>
-    <p class="pd-summary">Designed and built an automated turret defense system with real-time target tracking — integrating servo-driven pan/tilt mechanics, embedded microcontroller logic, and a computer vision pipeline into a fully autonomous fire-control loop.</p>
+    <p class="pd-summary">Autonomous face-tracking turret using OpenCV and a pan/tilt servo system — detects and tracks faces in real time, with a laser locked to the target centroid and an Arduino closing the control loop.</p>
     <div class="pd-tags">
-      <span class="proj-tag">Mechanical Design</span>
-      <span class="proj-tag">Embedded Systems</span>
-      <span class="proj-tag">Computer Vision</span>
+      <span class="proj-tag">OpenCV</span>
+      <span class="proj-tag">Arduino</span>
       <span class="proj-tag">Servo Control</span>
+      <span class="proj-tag">Computer Vision</span>
+      <span class="proj-tag">Python</span>
     </div>
   </div>
   <div class="pd-section">
     <p class="pd-section-label">Problem / Goal</p>
-    <p>Build a fully autonomous turret system capable of detecting, tracking, and engaging moving targets without human input. The goal was to close the entire detection-to-engagement loop in hardware — from real-time image processing through mechanical actuation — while keeping latency low enough for practical tracking performance.</p>
+    <p>Build a fully autonomous turret that detects a human face, tracks it in real time, and keeps a laser locked on target — no human input once running. The challenge was closing the full loop from camera frame to physical servo movement fast enough to feel responsive, using only a webcam, an Arduino, and two servo motors.</p>
   </div>
   <div class="pd-section">
-    <p class="pd-section-label">System Overview</p>
-    <p>The system is structured as three tightly coupled layers: perception, control, and actuation.</p>
+    <p class="pd-section-label">Hardware</p>
     <ul class="pd-bullets">
-      <li>Perception: camera feed processed through a computer vision pipeline for target detection and centroid estimation</li>
-      <li>Control: PID-based feedback loop on pan and tilt axes, running on an embedded microcontroller</li>
-      <li>Actuation: dual-servo pan/tilt mechanism designed and fabricated to mount the camera and firing mechanism as a single rigid assembly</li>
+      <li>Pan/tilt bracket with two metal gear servo motors — metal gears chosen over plastic to handle the torque load of the camera + laser assembly without stripping</li>
+      <li>Arduino receives angle commands over serial and writes PWM signals to each servo using the Servo library</li>
+      <li>Laser diode mounted rigidly to the camera assembly so both point in the same direction — no separate alignment needed</li>
+      <li>Python script on the host machine runs OpenCV, computes corrections, and sends commands to the Arduino at each frame</li>
+    </ul>
+    <div class="pd-media-grid" style="margin-top:1.25rem">
+      <div class="pd-media-slot wide">
+        <img src="turret-build.jpg" onerror="this.style.display='none'">
+      </div>
+    </div>
+  </div>
+  <div class="pd-section">
+    <p class="pd-section-label">System Architecture</p>
+    <p style="margin-bottom:0.75rem">Three coupled layers — perception, control, and actuation — running in a continuous loop:</p>
+    <ul class="pd-bullets">
+      <li><strong>Perception:</strong> webcam feed processed by OpenCV Haar Cascade — tries frontal face first, falls back to profile cascade (and mirrored profile) so tracking survives head turns. Requires 2 consecutive detections before locking on, filtering out single-frame false positives</li>
+      <li><strong>Control:</strong> face centroid is smoothed with an exponential weighted moving average (α=0.25) before being fed into the PD controller — raw pixel coordinates jump frame-to-frame, smoothing stabilizes the servo commands</li>
+      <li><strong>Actuation:</strong> two metal gear servo motors on a pan/tilt bracket physically move the camera and laser assembly to chase the target. Arduino receives angle + laser state over serial each frame and writes PWM to each servo</li>
     </ul>
   </div>
   <div class="pd-section">
-    <p class="pd-section-label">Design & Implementation</p>
+    <p class="pd-section-label">Targeting Math</p>
+    <p style="margin-bottom:0.75rem">The targeting loop runs a PD controller (Kp=0.07, Kd=0.005, Ki=0) independently on pan and tilt axes. Each frame:</p>
+    <p style="font-family:var(--mono);font-size:0.82rem;background:var(--surface-2);padding:0.75rem 1rem;border-radius:6px;margin-bottom:0.75rem;line-height:1.7">
+      error_x = smooth_face_x − frame_center_x<br>
+      error_y = smooth_face_y − frame_center_y<br><br>
+      pan_delta  = Kp·error_x + Kd·d(error_x)/dt<br>
+      tilt_delta = Kp·error_y + Kd·d(error_y)/dt<br><br>
+      angle_pan  = clip(angle_pan  + pan_delta,  0°, 180°)<br>
+      angle_tilt = clip(angle_tilt + tilt_delta, 0°, 180°)
+    </p>
     <ul class="pd-bullets">
-      <li>Designed the pan/tilt bracket geometry to minimize moment arm and reduce servo load during rapid slews</li>
-      <li>Implemented target detection using color/shape thresholding and contour analysis to extract target centroid in real time</li>
-      <li>Tuned PID gains for both axes independently — balancing tracking speed against overshoot and oscillation</li>
-      <li>Integrated firing actuation trigger logic with a deadband zone to prevent false engagements on edge detections</li>
-      <li>Iterated on mount stiffness after observing resonance feedback between servo motion and camera image stability</li>
+      <li><strong>Kp = 0.07</strong> — proportional gain, drives the servo toward the target; tuned to balance tracking speed against overshoot</li>
+      <li><strong>Kd = 0.005</strong> — derivative term damps oscillation by braking as the error shrinks, replacing the need for integral windup (Ki = 0)</li>
+      <li>Dead zone of ±40px around frame center — if the error is inside this window, no correction is sent and the PID resets to prevent servo hunting when locked on</li>
+      <li>Serial protocol sends <code style="font-family:var(--mono);font-size:0.8em">&lt;pan, tilt, laser, status&gt;</code> to Arduino each frame — status encodes no-face / tracking / locked so the Arduino can drive indicator LEDs independently</li>
+      <li>When no face is detected servos drift back toward center (2% blend per frame) and the laser can be toggled independently via keyboard</li>
     </ul>
+  </div>
+  <div class="pd-section">
+    <p class="pd-section-label">Tracking Demo</p>
+    <p style="margin-bottom:0.75rem">The system reliably detects and tracks faces at close range, keeping the laser locked on target as the subject moves. The full detection-to-actuation loop runs in real time.</p>
+    <div class="pd-media-grid" style="margin-top:0">
+      <div class="pd-media-slot wide">
+        <video controls style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;">
+          <source src="turret-demo.mov" type="video/quicktime">
+          <source src="turret-demo.mov" type="video/mp4">
+        </video>
+      </div>
+    </div>
   </div>
   <div class="pd-section">
     <p class="pd-section-label">Challenges</p>
     <ul class="pd-bullets">
-      <li>Latency in the vision-to-servo loop caused tracking lag — resolved by optimizing frame processing and reducing resolution on the detection pass</li>
-      <li>Mechanical resonance between the servo mounts and camera introduced oscillation into the PID loop — fixed with stiffer bracket geometry</li>
-      <li>Distinguishing target from background clutter required iterating on detection thresholds across varying lighting conditions</li>
+      <li>Haar Cascade detection accuracy degrades significantly at distance — face resolution drops below the detector's minimum size, causing detection to drop out. A deep learning based detector (like a lightweight YOLO model) would extend the effective tracking range</li>
+      <li>Serial communication latency between the Python script and Arduino added lag to the control loop — partially mitigated by reducing frame resolution on the detection pass</li>
+      <li>PD tuning required careful balancing — Kp too high caused oscillation, Kd too high over-damped and made tracking sluggish. Final values (Kp=0.07, Kd=0.005) were found by testing on a live target; a structured Ziegler–Nichols sweep would formalize this next time</li>
     </ul>
-  </div>
-  <div class="pd-section">
-    <p class="pd-section-label">Results</p>
-    <p>Achieved reliable real-time tracking of moving targets with sub-100ms latency from detection to servo response. The system successfully engaged targets autonomously across a range of speeds and trajectories, validating the full closed-loop pipeline from perception through actuation.</p>
-  </div>
-  <div class="pd-section">
-    <p class="pd-section-label">Media</p>
-    <div class="pd-media-grid">
-      <div class="pd-media-slot wide">
-        <img src="project-3-img-1.jpg" onerror="this.style.display='none'">
-        <span>project-3-img-1.jpg — turret assembly / CAD render</span>
-      </div>
-      <div class="pd-media-slot">
-        <img src="project-3-img-2.jpg" onerror="this.style.display='none'">
-        <span>project-3-img-2.jpg — vision pipeline / tracking demo</span>
-      </div>
-      <div class="pd-media-slot">
-        <img src="project-3-img-3.jpg" onerror="this.style.display='none'">
-        <span>project-3-img-3.jpg — electronics / wiring</span>
-      </div>
-    </div>
   </div>
 </div>
 
